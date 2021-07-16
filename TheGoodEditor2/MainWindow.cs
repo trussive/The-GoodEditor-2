@@ -8,6 +8,7 @@ using System.Text;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TheGoodEditor2.EditorWindows;
 using HiHoFile;
 using static HiHoFile.Extensions;
 
@@ -110,54 +111,6 @@ namespace TheGoodEditor2
             dontSwitch = checkBox1.Checked;
         }
 
-        public void buttonExtract_Click(object sender, EventArgs e)
-        {
-            ulong assetID = GetSelectedAssetID();
-
-            if (assetID != 0)
-                if (listBoxLayers.SelectedIndex > -1 && listBoxLayers.SelectedIndex < hoFile.MAST.sectionSect2.layers.Count)
-                    if (hoFile.MAST.sectionSect2.layers[listBoxLayers.SelectedIndex].subLayer is SubLayer_PSL psl)
-                        if (listBoxAssets.SelectedIndex > -1 && listBoxAssets.SelectedIndex < psl.assets.Count)
-                            using (SaveFileDialog saveFile = new SaveFileDialog()
-                            {
-                                FileName = psl.assets[listBoxAssets.SelectedIndex].assetID.ToString("X16")
-                            })
-                                if (saveFile.ShowDialog() == DialogResult.OK)
-                                    File.WriteAllBytes(saveFile.FileName, psl.assets[listBoxAssets.SelectedIndex].data);
-        }
-
-        public void buttonReplace_Click(object sender, EventArgs e)
-        {
-            ulong assetID = GetSelectedAssetID();
-
-            if (assetID != 0)
-                if (listBoxLayers.SelectedIndex > -1 && listBoxLayers.SelectedIndex < hoFile.MAST.sectionSect2.layers.Count)
-                    if (hoFile.MAST.sectionSect2.layers[listBoxLayers.SelectedIndex].subLayer is SubLayer_PSL psl)
-                        if (listBoxAssets.SelectedIndex > -1 && listBoxAssets.SelectedIndex < psl.assets.Count)
-                            using (OpenFileDialog openFile = new OpenFileDialog()
-                            {
-                                Title = "Choose a file to replace."
-                            })
-                                if (openFile.ShowDialog() == DialogResult.OK)
-                                {
-                                    byte[] file = File.ReadAllBytes(openFile.FileName);
-                                    if (file.Length <= psl.assets[listBoxAssets.SelectedIndex].totalDataSize)
-                                    {
-                                        psl.assets[listBoxAssets.SelectedIndex].data = file;
-                                        ReplaceInEditableArray(psl.assets[listBoxAssets.SelectedIndex].absoluteDataOffset, file, psl.assets[listBoxAssets.SelectedIndex].totalDataSize);
-
-                                        psl.assets[listBoxAssets.SelectedIndex].actualSize = file.Length;
-                                        WriteNewSizeInEditableArray(psl.assets[listBoxAssets.SelectedIndex].absoluteActualSizeOffset, file.Length);
-
-                                        listBoxAssets_SelectedIndexChanged(sender, e);
-                                    }
-                                    else
-                                        MessageBox.Show($"Please choose a file with at most the maximum size of the asset you want to replace.\n" +
-                                            $"Maximum asset size: {psl.assets[listBoxAssets.SelectedIndex].totalDataSize} bytes\n" +
-                                            $"Size of your file: {file.Length} bytes");
-                                }
-        }
-
         public void buttonExtractAll_Click(object sender, EventArgs e)
         {
             using (FolderBrowserDialog folderBrowser = new FolderBrowserDialog())
@@ -178,7 +131,20 @@ namespace TheGoodEditor2
         {
             this.Close();
         }
-        byte[] x;
+        public byte[] x;
+        public static string SetValueForTextPosX = "";
+        public static string SetValueForTextPosY = "";
+        public static string SetValueForTextPosZ = "";
+
+        public static string SetValueForTextRotX = "";
+        public static string SetValueForTextRotY = "";
+        public static string SetValueForTextRotZ = "";
+
+        public static string SetValueForTextScaleX = "";
+        public static string SetValueForTextScaleY = "";
+        public static string SetValueForTextScaleZ = "";
+        public static string SetFlagVisibility = "";
+        public static string setCollFlag = "";
         private void button2_Click(object sender, EventArgs e)
         {
             ulong assetID = GetSelectedAssetID();
@@ -237,20 +203,23 @@ namespace TheGoodEditor2
                             string o = myFloat9.ToString();
 
 
+                            SetValueForTextPosX = z;
+                            SetValueForTextPosY = j;
+                            SetValueForTextPosZ = y;
 
-                            txtPosX.Text = z;
-                            txtPosY.Text = j;
-                            txtPosZ.Text = i;
+                            SetValueForTextRotX = q;
+                            SetValueForTextRotY = w;
+                            SetValueForTextRotZ = r;
 
-                            txtRotX.Text = q;
-                            txtRotY.Text = w;
-                            txtRotZ.Text = r;
+                            SetValueForTextScaleX = t;
+                            SetValueForTextScaleY = y;
+                            SetValueForTextScaleZ = o;
 
-                            txtScaleX.Text = t;
-                            txtScaleY.Text = y;
-                            txtScaleZ.Text = o;
-                            txtFlag.Text = flag1;
-                            txtCollFlag.Text = flag2;
+                            SetFlagVisibility = flag1;
+                            setCollFlag = flag2;
+
+                            SimpleObjectEditor simpEdit = new SimpleObjectEditor();
+                            simpEdit.Show();
                         }
         }
 
@@ -270,213 +239,6 @@ namespace TheGoodEditor2
                                     File.WriteAllBytes(saveFile.FileName, psl.assets[listBoxAssets.SelectedIndex].data);
         }
 
-        private void buttonReplace_Click_1(object sender, EventArgs e)
-        {
-            ulong assetID = GetSelectedAssetID();
-
-            if (assetID != 0)
-                if (listBoxLayers.SelectedIndex > -1 && listBoxLayers.SelectedIndex < hoFile.MAST.sectionSect2.layers.Count)
-                    if (hoFile.MAST.sectionSect2.layers[listBoxLayers.SelectedIndex].subLayer is SubLayer_PSL psl)
-                        if (listBoxAssets.SelectedIndex > -1 && listBoxAssets.SelectedIndex < psl.assets.Count)
-                            using (OpenFileDialog openFile = new OpenFileDialog()
-                            {
-                                Title = "Choose a file to replace."
-                            })
-                                if (openFile.ShowDialog() == DialogResult.OK)
-                                {
-                                    byte[] file = File.ReadAllBytes(openFile.FileName);
-                                    if (file.Length <= psl.assets[listBoxAssets.SelectedIndex].totalDataSize)
-                                    {
-                                        psl.assets[listBoxAssets.SelectedIndex].data = file;
-                                        ReplaceInEditableArray(psl.assets[listBoxAssets.SelectedIndex].absoluteDataOffset, file, psl.assets[listBoxAssets.SelectedIndex].totalDataSize);
-
-                                        psl.assets[listBoxAssets.SelectedIndex].actualSize = file.Length;
-                                        WriteNewSizeInEditableArray(psl.assets[listBoxAssets.SelectedIndex].absoluteActualSizeOffset, file.Length);
-
-                                        listBoxAssets_SelectedIndexChanged(sender, e);
-                                    }
-                                    else
-                                        MessageBox.Show($"Please choose a file with at most the maximum size of the asset you want to replace.\n" +
-                                            $"Maximum asset size: {psl.assets[listBoxAssets.SelectedIndex].totalDataSize} bytes\n" +
-                                            $"Size of your file: {file.Length} bytes");
-                                }
-        }
-
-        byte[] posX;
-        byte[] posY;
-        byte[] posZ;
-
-        byte[] rotX;
-        byte[] rotY;
-        byte[] rotZ;
-
-        byte[] scaleX;
-        byte[] scaleY;
-        byte[] scaleZ;
-        public void saveDataEdited_Click(object sender, EventArgs e)
-        {
-            ulong assetID = GetSelectedAssetID();
-
-            if (assetID != 0)
-                if (listBoxLayers.SelectedIndex > -1 && listBoxLayers.SelectedIndex < hoFile.MAST.sectionSect2.layers.Count)
-                    if (hoFile.MAST.sectionSect2.layers[listBoxLayers.SelectedIndex].subLayer is SubLayer_PSL psl)
-                        if (listBoxAssets.SelectedIndex > -1 && listBoxAssets.SelectedIndex < psl.assets.Count)
-                        {
-                            float parsePosX = float.Parse(txtPosX.Text);
-                            float parsePosY = float.Parse(txtPosY.Text);
-                            float parsePosZ = float.Parse(txtPosZ.Text);
-                            float s = parsePosX;
-                            float i = parsePosY;
-                            float p = parsePosZ;
-                            float all1 = float.Parse(s.ToString());
-                            float all2 = float.Parse(i.ToString());
-                            float all3 = float.Parse(p.ToString());
-                            posX = BitConverter.GetBytes(all1);
-                            posY = BitConverter.GetBytes(all2);
-                            posZ = BitConverter.GetBytes(all3);
-
-                            float parseRotX = float.Parse(txtRotX.Text);
-                            float parseRotY = float.Parse(txtRotY.Text);
-                            float parseRotZ = float.Parse(txtRotZ.Text);
-                            float q = parseRotX;
-                            float w = parseRotY;
-                            float r = parseRotZ;
-                            float all4 = float.Parse(q.ToString());
-                            float all5 = float.Parse(w.ToString());
-                            float all6 = float.Parse(r.ToString());
-                            rotX = BitConverter.GetBytes(all4);
-                            rotY = BitConverter.GetBytes(all5);
-                            rotZ = BitConverter.GetBytes(all6);
-
-                            float parseScaleX = float.Parse(txtScaleX.Text);
-                            float parseScaleY = float.Parse(txtScaleY.Text);
-                            float parseScaleZ = float.Parse(txtScaleZ.Text);
-                            float a = parseScaleX;
-                            float l = parseScaleY;
-                            float d = parseScaleZ;
-                            float all7 = float.Parse(a.ToString());
-                            float all8 = float.Parse(l.ToString());
-                            float all9 = float.Parse(d.ToString());
-                            scaleX = BitConverter.GetBytes(all7);
-                            scaleY = BitConverter.GetBytes(all8);
-                            scaleZ = BitConverter.GetBytes(all9);
-
-                            byte parseFlag = Byte.Parse(txtFlag.Text);
-                            byte parseFlag1 = Byte.Parse(txtCollFlag.Text);
-
-                            if (BitConverter.IsLittleEndian)
-                            {
-                                Array.Reverse(posX);
-                                Array.Reverse(posY);
-                                Array.Reverse(posZ);
-
-                                Array.Reverse(rotX);
-                                Array.Reverse(rotY);
-                                Array.Reverse(rotZ);
-
-                                Array.Reverse(scaleX);
-                                Array.Reverse(scaleY);
-                                Array.Reverse(scaleZ);
-
-                            }
-
-                            posX.CopyTo(x, 0x2C);
-                            posY.CopyTo(x, 0x30);
-                            posZ.CopyTo(x, 0x34);
-
-                            rotX.CopyTo(x, 0x20);
-                            rotY.CopyTo(x, 0x24);
-                            rotZ.CopyTo(x, 0x28);
-
-                            scaleX.CopyTo(x, 0x38);
-                            scaleY.CopyTo(x, 0x3C);
-                            scaleZ.CopyTo(x, 0x40);
-                            x[0x10] = parseFlag;
-                            x[0x13] = parseFlag1;
-
-
-                            psl.assets[listBoxAssets.SelectedIndex].data = x;
-                            ReplaceInEditableArray(psl.assets[listBoxAssets.SelectedIndex].absoluteDataOffset, x, psl.assets[listBoxAssets.SelectedIndex].totalDataSize);
-
-                            psl.assets[listBoxAssets.SelectedIndex].actualSize = x.Length;
-                            WriteNewSizeInEditableArray(psl.assets[listBoxAssets.SelectedIndex].absoluteActualSizeOffset, x.Length);
-
-                            listBoxAssets_SelectedIndexChanged(sender, e);
-                        }
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)  // Randomizer Generator
-        {
-            // Generate Random Numbers for the Position Fields
-            Random slumpGenerator1 = new Random();
-            int txt = slumpGenerator1.Next(0, 100);
-            Random slumpGenerator2 = new Random();
-            int txt1 = slumpGenerator2.Next(0, 50);
-            Random slumpGenerator3 = new Random();
-            int txt2 = slumpGenerator3.Next(0, 90);
-            txtPosX.Text = txt.ToString();
-            txtPosY.Text = txt1.ToString();
-            txtPosZ.Text = txt2.ToString();
-
-            // Generate Random Numbers for the Rotation Fields
-            Random slumpGenerator4 = new Random();
-            int txt4 = slumpGenerator4.Next(0, 100);
-            Random slumpGenerator5 = new Random();
-            int txt5 = slumpGenerator5.Next(0, 50);
-            Random slumpGenerator6 = new Random();
-            int txt6 = slumpGenerator6.Next(0, 90);
-            txtRotX.Text = txt4.ToString();
-            txtRotY.Text = txt5.ToString();
-            txtRotZ.Text = txt6.ToString();
-
-            // Generate Random Numbers for the Scale Fields
-            Random slumpGenerator7 = new Random();
-            int txt7 = slumpGenerator7.Next(0, 100);
-            Random slumpGenerator8 = new Random();
-            int txt8 = slumpGenerator8.Next(-100, 89);
-            Random slumpGenerator9 = new Random();
-            int txt9 = slumpGenerator9.Next(0, 53);
-            txtScaleX.Text = txt7.ToString();
-            txtScaleY.Text = txt8.ToString();
-            txtScaleZ.Text = txt9.ToString();
-        }
-
-        private void btnApplyScaleX_Click(object sender, EventArgs e)
-        {
-            string input1 = txtScaleX.Text;
-
-            txtScaleY.Text = input1;
-            txtScaleZ.Text = input1;
-        }
-
-
-        private void radioButtonTrue_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void rdoFalse_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void buttonExtractAll_Click_1(object sender, EventArgs e)
-        {
-            using (FolderBrowserDialog folderBrowser = new FolderBrowserDialog())
-                if (folderBrowser.ShowDialog() == DialogResult.OK)
-                    hoFile.ExtractAssetsToFolders(folderBrowser.SelectedPath, true);
-        }
 
         private void exportLayerListToTextFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -515,19 +277,6 @@ namespace TheGoodEditor2
                     fileName = saveFile.FileName;
                     saveHoParcelToolStripMenuItem_Click(sender, e);
                 }
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            txtPosX.Text = String.Empty;
-            txtPosY.Text = String.Empty;
-            txtPosZ.Text = String.Empty;
-            txtRotX.Text = String.Empty;
-            txtRotY.Text = String.Empty;
-            txtRotZ.Text = String.Empty;
-            txtScaleX.Text = String.Empty;
-            txtScaleY.Text = String.Empty;
-            txtScaleZ.Text = String.Empty;
         }
 
         private void btnFindLayer_Click(object sender, EventArgs e)
@@ -647,6 +396,168 @@ namespace TheGoodEditor2
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
             DiscordRPCController.ToggleDiscordRichPresence(checkBox2.Checked);
+        }
+
+        private void grupAssetOtherTools_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonExtractAll_Click_2(object sender, EventArgs e)
+        {
+            using (FolderBrowserDialog folderBrowser = new FolderBrowserDialog())
+                if (folderBrowser.ShowDialog() == DialogResult.OK)
+                    hoFile.ExtractAssetsToFolders(folderBrowser.SelectedPath, true);
+        }
+
+        private void buttonReplace_Click_2(object sender, EventArgs e)
+        {
+            ulong assetID = GetSelectedAssetID();
+
+            if (assetID != 0)
+                if (listBoxLayers.SelectedIndex > -1 && listBoxLayers.SelectedIndex < hoFile.MAST.sectionSect2.layers.Count)
+                    if (hoFile.MAST.sectionSect2.layers[listBoxLayers.SelectedIndex].subLayer is SubLayer_PSL psl)
+                        if (listBoxAssets.SelectedIndex > -1 && listBoxAssets.SelectedIndex < psl.assets.Count)
+                            using (OpenFileDialog openFile = new OpenFileDialog()
+                            {
+                                Title = "Choose a file to replace."
+                            })
+                                if (openFile.ShowDialog() == DialogResult.OK)
+                                {
+                                    byte[] file = File.ReadAllBytes(openFile.FileName);
+                                    if (file.Length <= psl.assets[listBoxAssets.SelectedIndex].totalDataSize)
+                                    {
+                                        psl.assets[listBoxAssets.SelectedIndex].data = file;
+                                        ReplaceInEditableArray(psl.assets[listBoxAssets.SelectedIndex].absoluteDataOffset, file, psl.assets[listBoxAssets.SelectedIndex].totalDataSize);
+
+                                        psl.assets[listBoxAssets.SelectedIndex].actualSize = file.Length;
+                                        WriteNewSizeInEditableArray(psl.assets[listBoxAssets.SelectedIndex].absoluteActualSizeOffset, file.Length);
+
+                                        listBoxAssets_SelectedIndexChanged(sender, e);
+                                    }
+                                    else
+                                        MessageBox.Show($"Please choose a file with at most the maximum size of the asset you want to replace.\n" +
+                                            $"Maximum asset size: {psl.assets[listBoxAssets.SelectedIndex].totalDataSize} bytes\n" +
+                                            $"Size of your file: {file.Length} bytes");
+                                }
+        }
+
+        private void buttonExtract_Click_2(object sender, EventArgs e)
+        {
+            ulong assetID = GetSelectedAssetID();
+
+            if (assetID != 0)
+                if (listBoxLayers.SelectedIndex > -1 && listBoxLayers.SelectedIndex < hoFile.MAST.sectionSect2.layers.Count)
+                    if (hoFile.MAST.sectionSect2.layers[listBoxLayers.SelectedIndex].subLayer is SubLayer_PSL psl)
+                        if (listBoxAssets.SelectedIndex > -1 && listBoxAssets.SelectedIndex < psl.assets.Count)
+                            using (SaveFileDialog saveFile = new SaveFileDialog()
+                            {
+                                FileName = psl.assets[listBoxAssets.SelectedIndex].assetID.ToString("X16")
+                            })
+                                if (saveFile.ShowDialog() == DialogResult.OK)
+                                    File.WriteAllBytes(saveFile.FileName, psl.assets[listBoxAssets.SelectedIndex].data);
+        }
+        byte[] posX;
+        byte[] posY;
+        byte[] posZ;
+
+        byte[] rotX;
+        byte[] rotY;
+        byte[] rotZ;
+
+        byte[] scaleX;
+        byte[] scaleY;
+        byte[] scaleZ;
+        public void button2_Click_1(object sender, EventArgs e)
+        {
+            ulong assetID = GetSelectedAssetID();
+
+            if (assetID != 0)
+                if (listBoxLayers.SelectedIndex > -1 && listBoxLayers.SelectedIndex < hoFile.MAST.sectionSect2.layers.Count)
+                    if (hoFile.MAST.sectionSect2.layers[listBoxLayers.SelectedIndex].subLayer is SubLayer_PSL psl)
+                        if (listBoxAssets.SelectedIndex > -1 && listBoxAssets.SelectedIndex < psl.assets.Count)
+                        {
+                            float parsePosX = float.Parse(SimpleObjectEditor.SaveValueForTextPosX);
+                            float parsePosY = float.Parse(SimpleObjectEditor.SaveValueForTextPosY);
+                            float parsePosZ = float.Parse(SimpleObjectEditor.SaveValueForTextPosZ);
+                            float s = parsePosX;
+                            float i = parsePosY;
+                            float p = parsePosZ;
+                            float all1 = float.Parse(s.ToString());
+                            float all2 = float.Parse(i.ToString());
+                            float all3 = float.Parse(p.ToString());
+                            posX = BitConverter.GetBytes(all1);
+                            posY = BitConverter.GetBytes(all2);
+                            posZ = BitConverter.GetBytes(all3);
+
+                            float parseRotX = float.Parse(SimpleObjectEditor.SaveValueForTextRotX);
+                            float parseRotY = float.Parse(SimpleObjectEditor.SaveValueForTextRotY);
+                            float parseRotZ = float.Parse(SimpleObjectEditor.SaveValueForTextRotZ);
+                            float q = parseRotX;
+                            float w = parseRotY;
+                            float r = parseRotZ;
+                            float all4 = float.Parse(q.ToString());
+                            float all5 = float.Parse(w.ToString());
+                            float all6 = float.Parse(r.ToString());
+                            rotX = BitConverter.GetBytes(all4);
+                            rotY = BitConverter.GetBytes(all5);
+                            rotZ = BitConverter.GetBytes(all6);
+
+                            float parseScaleX = float.Parse(SimpleObjectEditor.SaveValueForTextScaleX);
+                            float parseScaleY = float.Parse(SimpleObjectEditor.SaveValueForTextScaleY);
+                            float parseScaleZ = float.Parse(SimpleObjectEditor.SaveValueForTextScaleZ);
+                            float a = parseScaleX;
+                            float l = parseScaleY;
+                            float d = parseScaleZ;
+                            float all7 = float.Parse(a.ToString());
+                            float all8 = float.Parse(l.ToString());
+                            float all9 = float.Parse(d.ToString());
+                            scaleX = BitConverter.GetBytes(all7);
+                            scaleY = BitConverter.GetBytes(all8);
+                            scaleZ = BitConverter.GetBytes(all9);
+
+                            byte parseFlag = Byte.Parse(SimpleObjectEditor.SaveVisibilityFlag);
+                            byte parseFlag1 = Byte.Parse(SimpleObjectEditor.SaveCollFlag);
+
+                            if (BitConverter.IsLittleEndian)
+                            {
+                                Array.Reverse(posX);
+                                Array.Reverse(posY);
+                                Array.Reverse(posZ);
+
+                                Array.Reverse(rotX);
+                                Array.Reverse(rotY);
+                                Array.Reverse(rotZ);
+
+                                Array.Reverse(scaleX);
+                                Array.Reverse(scaleY);
+                                Array.Reverse(scaleZ);
+
+                            }
+
+                            posX.CopyTo(x, 0x2C);
+                            posY.CopyTo(x, 0x30);
+                            posZ.CopyTo(x, 0x34);
+
+                            rotX.CopyTo(x, 0x20);
+                            rotY.CopyTo(x, 0x24);
+                            rotZ.CopyTo(x, 0x28);
+
+                            scaleX.CopyTo(x, 0x38);
+                            scaleY.CopyTo(x, 0x3C);
+                            scaleZ.CopyTo(x, 0x40);
+                            x[0x10] = parseFlag;
+                            x[0x13] = parseFlag1;
+
+
+                            psl.assets[listBoxAssets.SelectedIndex].data = x;
+                            ReplaceInEditableArray(psl.assets[listBoxAssets.SelectedIndex].absoluteDataOffset, x, psl.assets[listBoxAssets.SelectedIndex].totalDataSize);
+
+                            psl.assets[listBoxAssets.SelectedIndex].actualSize = x.Length;
+                            WriteNewSizeInEditableArray(psl.assets[listBoxAssets.SelectedIndex].absoluteActualSizeOffset, x.Length);
+
+                            listBoxAssets_SelectedIndexChanged(sender, e);
+                        }
         }
     }
 }
