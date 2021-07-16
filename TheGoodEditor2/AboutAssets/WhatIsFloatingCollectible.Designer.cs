@@ -55,11 +55,11 @@ namespace TheGoodEditor2.AboutAssets
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(181, 109);
+            this.label2.Location = new System.Drawing.Point(242, 110);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(481, 32);
+            this.label2.Size = new System.Drawing.Size(327, 32);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Editable? - No. (or at least not yet)";
+            this.label2.Text = "Editable? - No, not yet.";
             // 
             // txtAboutAsset
             // 
@@ -70,9 +70,7 @@ namespace TheGoodEditor2.AboutAssets
             this.txtAboutAsset.ReadOnly = true;
             this.txtAboutAsset.Size = new System.Drawing.Size(812, 305);
             this.txtAboutAsset.TabIndex = 2;
-            this.txtAboutAsset.Text = "FloatingCollectibles are the objects in which you collect in the game like Happin" +
-    "ess Nuggets, lives, etc. I can not figure out how to edit these yet, but their p" +
-    "osition can be viewed!\r\n";
+            this.txtAboutAsset.Text = resources.GetString("txtAboutAsset.Text");
             this.txtAboutAsset.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label1
