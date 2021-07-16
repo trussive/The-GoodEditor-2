@@ -108,11 +108,6 @@ namespace TheGoodEditor2.EditorWindows
 
         private void saveDataEdited_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void SimpleObjectEditor_FormClosed(object sender, FormClosedEventArgs e)
-        {
             SaveValueForTextPosX = txtPosX.Text;
             SaveValueForTextPosY = txtPosY.Text;
             SaveValueForTextPosZ = txtPosZ.Text;
@@ -127,6 +122,16 @@ namespace TheGoodEditor2.EditorWindows
 
             SaveVisibilityFlag = txtFlag.Text;
             SaveCollFlag = txtCollFlag.Text;
+            MainWindow form = Application.OpenForms.OfType<MainWindow>().FirstOrDefault();
+            if (form != null)
+            {
+                form.saveSimpleObject(sender, e);
+            }
+        }
+
+        private void SimpleObjectEditor_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            
         }
     }
 }

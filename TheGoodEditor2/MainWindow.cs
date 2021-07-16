@@ -9,6 +9,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TheGoodEditor2.EditorWindows;
+using TheGoodEditor2.AboutAssets;
 using HiHoFile;
 using static HiHoFile.Extensions;
 
@@ -16,7 +17,7 @@ namespace TheGoodEditor2
 {
     public partial class MainWindow : Form
     {
-        
+
         public MainWindow()
 
         {
@@ -145,6 +146,22 @@ namespace TheGoodEditor2
         public static string SetValueForTextScaleZ = "";
         public static string SetFlagVisibility = "";
         public static string setCollFlag = "";
+
+        public static string SetValueForTextPlatformPosX = "";
+        public static string SetValueForTextPlatformPosY = "";
+        public static string SetValueForTextPlatformPosZ = "";
+
+        public static string SetValueForTextPlatformRotX = "";
+        public static string SetValueForTextPlatformRotY = "";
+        public static string SetValueForTextPlatformRotZ = "";
+
+        public static string SetValueForTextPlatformScaleX = "";
+        public static string SetValueForTextPlatformScaleY = "";
+        public static string SetValueForTextPlatformScaleZ = "";
+
+        public static string SetValueForCollectiblePosX = "";
+        public static string SetValueForCollectiblePosY = "";
+        public static string SetValueForCollectiblePosZ = "";
         private void button2_Click(object sender, EventArgs e)
         {
             ulong assetID = GetSelectedAssetID();
@@ -218,8 +235,93 @@ namespace TheGoodEditor2
                             SetFlagVisibility = flag1;
                             setCollFlag = flag2;
 
-                            SimpleObjectEditor simpEdit = new SimpleObjectEditor();
-                            simpEdit.Show();
+                            string isWhatAsset = listBoxAssets.GetItemText(listBoxAssets.SelectedItem);
+                            if (isWhatAsset.Contains("SimpleObject"))
+                            {
+                                SimpleObjectEditor simpEdit = new SimpleObjectEditor();
+                                simpEdit.Show();
+                            }
+
+                            if (isWhatAsset.Contains("Platform"))
+                            {
+                                x = psl.assets[listBoxAssets.SelectedIndex].data;
+                                byte[] PlaceableDataPlatform = x;
+
+
+                                float myFloatPlatform = System.BitConverter.ToSingle(PlaceableDataPlatform, 0x20); //Read Position X's Float
+                                float myFloat2Platform = System.BitConverter.ToSingle(PlaceableDataPlatform, 0x24); //Read Position Y's Float
+                                float myFloat3Platform = System.BitConverter.ToSingle(PlaceableDataPlatform, 0x28); //Read Position Z's Float
+
+                                float myFloat4Platform = System.BitConverter.ToSingle(PlaceableDataPlatform, 0x2C); //Read Roation X's Float
+                                float myFloat5Platform = System.BitConverter.ToSingle(PlaceableDataPlatform, 0x30); //Read Rotation Y's Float
+                                float myFloat6Platform = System.BitConverter.ToSingle(PlaceableDataPlatform, 0x34); //Read Rotation Z's Float
+
+                                float myFloat7Platform = System.BitConverter.ToSingle(PlaceableDataPlatform, 0x38); //Read Scale X's Float
+                                float myFloat8Platform = System.BitConverter.ToSingle(PlaceableDataPlatform, 0x3C); //Read Scale Y's Float
+                                float myFloat9Platform = System.BitConverter.ToSingle(PlaceableDataPlatform, 0x40); //ReadScale Z's Float
+
+                                string PlatPosX = myFloatPlatform.ToString();
+                                string PlatPosY = myFloat2Platform.ToString();
+                                string PlatPosZ = myFloat3Platform.ToString();
+
+                                string PlatRotX = myFloat4Platform.ToString();
+                                string PlatRotY = myFloat5Platform.ToString();
+                                string PlatRotZ = myFloat6Platform.ToString();
+
+                                string PlatScaleX = myFloat7Platform.ToString();
+                                string PlatScaleY = myFloat8Platform.ToString();
+                                string PlatScaleZ = myFloat9Platform.ToString();
+
+
+                                SetValueForTextPlatformPosX = PlatPosX;
+                                SetValueForTextPlatformPosY = PlatPosY;
+                                SetValueForTextPlatformPosZ = PlatPosZ;
+
+                                SetValueForTextPlatformRotX = PlatRotX;
+                                SetValueForTextPlatformRotY = PlatRotY;
+                                SetValueForTextPlatformRotZ = PlatRotZ;
+
+                                SetValueForTextPlatformScaleX = PlatScaleX;
+                                SetValueForTextPlatformScaleY = PlatScaleY;
+                                SetValueForTextPlatformScaleZ = PlatScaleZ;
+
+                                PlatformEditor platEdit = new PlatformEditor();
+                                platEdit.Show();
+                            }
+                            if (isWhatAsset.Contains("FloatingCollectible"))
+                            {
+                                x = psl.assets[listBoxAssets.SelectedIndex].data;
+                                byte[] PlaceableDataFloatingCollectible = x;
+                                if (BitConverter.IsLittleEndian)
+                                {
+                                    Array.Reverse(x, 0x60, 4);
+                                    Array.Reverse(x, 0x64, 4);
+                                    Array.Reverse(x, 0x68, 4);
+                                }
+
+
+                                float myFloatCollectible = System.BitConverter.ToSingle(PlaceableDataFloatingCollectible, 0x60); //Read Position X's Float
+                                float myFloat2Collectible = System.BitConverter.ToSingle(PlaceableDataFloatingCollectible, 0x64); //Read Position Y's Float
+                                float myFloat3Collectible = System.BitConverter.ToSingle(PlaceableDataFloatingCollectible, 0x68); //Read Position Z's Float
+
+
+                                string CollectiblePosX = myFloatCollectible.ToString();
+                                string CollectiblePosY = myFloat2Collectible.ToString();
+                                string CollectiblePosZ = myFloat3Collectible.ToString();
+
+
+
+                                SetValueForCollectiblePosX = CollectiblePosX;
+                                SetValueForCollectiblePosY = CollectiblePosY;
+                                SetValueForCollectiblePosZ = CollectiblePosZ;
+
+
+                                FloatingCollectibleEditorWindow collEdit = new FloatingCollectibleEditorWindow();
+                                collEdit.Show();
+                            }
+
+
+
                         }
         }
 
@@ -390,7 +492,7 @@ namespace TheGoodEditor2
 
         private void MainWindow_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
@@ -457,6 +559,11 @@ namespace TheGoodEditor2
                                 if (saveFile.ShowDialog() == DialogResult.OK)
                                     File.WriteAllBytes(saveFile.FileName, psl.assets[listBoxAssets.SelectedIndex].data);
         }
+
+        public void button2_Click_1(object sender, EventArgs e)
+        {
+
+        }
         byte[] posX;
         byte[] posY;
         byte[] posZ;
@@ -468,7 +575,7 @@ namespace TheGoodEditor2
         byte[] scaleX;
         byte[] scaleY;
         byte[] scaleZ;
-        public void button2_Click_1(object sender, EventArgs e)
+        public void saveSimpleObject(object sender, EventArgs e)
         {
             ulong assetID = GetSelectedAssetID();
 
@@ -558,6 +665,169 @@ namespace TheGoodEditor2
 
                             listBoxAssets_SelectedIndexChanged(sender, e);
                         }
+        }
+        byte[] posXPlat;
+        byte[] posYPlat;
+        byte[] posZPlat;
+
+        byte[] rotXPlat;
+        byte[] rotYPlat;
+        byte[] rotZPlat;
+
+        byte[] scaleXPlat;
+        byte[] scaleYPlat;
+        byte[] scaleZPlat;
+        public void savePlatform(object sender, EventArgs e)
+        {
+            ulong assetID = GetSelectedAssetID();
+
+            if (assetID != 0)
+                if (listBoxLayers.SelectedIndex > -1 && listBoxLayers.SelectedIndex < hoFile.MAST.sectionSect2.layers.Count)
+                    if (hoFile.MAST.sectionSect2.layers[listBoxLayers.SelectedIndex].subLayer is SubLayer_PSL psl)
+                        if (listBoxAssets.SelectedIndex > -1 && listBoxAssets.SelectedIndex < psl.assets.Count)
+                        {
+                            float parsePosXPlat = float.Parse(PlatformEditor.SaveValueForTextPosXPlat);
+                            float parsePosYPlat = float.Parse(PlatformEditor.SaveValueForTextPosYPlat);
+                            float parsePosZPlat = float.Parse(PlatformEditor.SaveValueForTextPosZPlat);
+                            float posxplatPlat = parsePosXPlat;
+                            float platY = parsePosYPlat;
+                            float PlatZ = parsePosZPlat;
+                            float all01 = float.Parse(posxplatPlat.ToString());
+                            float all02 = float.Parse(platY.ToString());
+                            float all03 = float.Parse(PlatZ.ToString());
+                            posXPlat = BitConverter.GetBytes(all01);
+                            posYPlat = BitConverter.GetBytes(all02);
+                            posZPlat = BitConverter.GetBytes(all03);
+
+                            float parseRotXPlat = float.Parse(PlatformEditor.SaveValueForTextRotXPlat);
+                            float parseRotYPlat = float.Parse(PlatformEditor.SaveValueForTextRotYPlat);
+                            float parseRotZPlat = float.Parse(PlatformEditor.SaveValueForTextRotZPlat);
+                            float PlatRX = parseRotXPlat;
+                            float PlatRY = parseRotYPlat;
+                            float PlatRZ = parseRotZPlat;
+                            float all04 = float.Parse(PlatRX.ToString());
+                            float all05 = float.Parse(PlatRY.ToString());
+                            float all06 = float.Parse(PlatRZ.ToString());
+                            rotXPlat = BitConverter.GetBytes(all04);
+                            rotYPlat = BitConverter.GetBytes(all05);
+                            rotZPlat = BitConverter.GetBytes(all06);
+
+                            float parseScaleXPlat = float.Parse(PlatformEditor.SaveValueForTextScaleXPlat);
+                            float parseScaleYPlat = float.Parse(PlatformEditor.SaveValueForTextScaleYPlat);
+                            float parseScaleZPlat = float.Parse(PlatformEditor.SaveValueForTextScaleZPlat);
+                            float PlatSX = parseScaleXPlat;
+                            float PlatSY = parseScaleYPlat;
+                            float PlatSZ = parseScaleZPlat;
+                            float all07 = float.Parse(PlatSX.ToString());
+                            float all08 = float.Parse(PlatSY.ToString());
+                            float all09 = float.Parse(PlatSZ.ToString());
+                            scaleXPlat = BitConverter.GetBytes(all07);
+                            scaleYPlat = BitConverter.GetBytes(all08);
+                            scaleZPlat = BitConverter.GetBytes(all09);
+
+
+                            if (BitConverter.IsLittleEndian)
+                            {
+                                Array.Reverse(posXPlat);
+                                Array.Reverse(posYPlat);
+                                Array.Reverse(posZPlat);
+
+                                Array.Reverse(rotXPlat);
+                                Array.Reverse(rotYPlat);
+                                Array.Reverse(rotZPlat);
+
+                                Array.Reverse(scaleXPlat);
+                                Array.Reverse(scaleYPlat);
+                                Array.Reverse(scaleZPlat);
+
+                            }
+
+                            posXPlat.CopyTo(x, 0x2C);
+                            posYPlat.CopyTo(x, 0x30);
+                            posZPlat.CopyTo(x, 0x34);
+
+                            rotXPlat.CopyTo(x, 0x20);
+                            rotYPlat.CopyTo(x, 0x24);
+                            rotZPlat.CopyTo(x, 0x28);
+
+                            scaleXPlat.CopyTo(x, 0x38);
+                            scaleYPlat.CopyTo(x, 0x3C);
+                            scaleZPlat.CopyTo(x, 0x40);
+
+                            psl.assets[listBoxAssets.SelectedIndex].data = x;
+                            ReplaceInEditableArray(psl.assets[listBoxAssets.SelectedIndex].absoluteDataOffset, x, psl.assets[listBoxAssets.SelectedIndex].totalDataSize);
+
+                            psl.assets[listBoxAssets.SelectedIndex].actualSize = x.Length;
+                            WriteNewSizeInEditableArray(psl.assets[listBoxAssets.SelectedIndex].absoluteActualSizeOffset, x.Length);
+
+                            listBoxAssets_SelectedIndexChanged(sender, e);
+                        }
+        }
+        byte[] posXCollectible;
+        byte[] posYCollectible;
+        byte[] posZCollectible;
+        public void saveFloatingCollectible(object sender, EventArgs e)
+        {
+            ulong assetID = GetSelectedAssetID();
+
+            if (assetID != 0)
+                if (listBoxLayers.SelectedIndex > -1 && listBoxLayers.SelectedIndex < hoFile.MAST.sectionSect2.layers.Count)
+                    if (hoFile.MAST.sectionSect2.layers[listBoxLayers.SelectedIndex].subLayer is SubLayer_PSL psl)
+                        if (listBoxAssets.SelectedIndex > -1 && listBoxAssets.SelectedIndex < psl.assets.Count)
+                        {
+                            float parsePosXColl = float.Parse(FloatingCollectibleEditorWindow.SaveValueForTextPosXCollectible);
+                            float parsePosYColl = float.Parse(FloatingCollectibleEditorWindow.SaveValueForTextPosYCollectible);
+                            float parsePosZColl = float.Parse(FloatingCollectibleEditorWindow.SaveValueForTextPosZCollectible);
+                            float Coll01 = parsePosXColl;
+                            float Coll02 = parsePosYColl;
+                            float Coll03 = parsePosZColl;
+                            float all001 = float.Parse(Coll01.ToString());
+                            float all002 = float.Parse(Coll02.ToString());
+                            float all003 = float.Parse(Coll03.ToString());
+                            posXCollectible = BitConverter.GetBytes(all001);
+                            posYCollectible = BitConverter.GetBytes(all002);
+                            posZCollectible = BitConverter.GetBytes(all003);
+
+                            if (BitConverter.IsLittleEndian)
+                            {
+                                Array.Reverse(posXCollectible);
+                                Array.Reverse(posYCollectible);
+                                Array.Reverse(posZCollectible);
+                            }
+                            posXCollectible.CopyTo(x, 0x60);
+                            posYCollectible.CopyTo(x, 0x64);
+                            posZCollectible.CopyTo(x, 0x68);
+
+
+                            psl.assets[listBoxAssets.SelectedIndex].data = x;
+                            ReplaceInEditableArray(psl.assets[listBoxAssets.SelectedIndex].absoluteDataOffset, x, psl.assets[listBoxAssets.SelectedIndex].totalDataSize);
+
+                            psl.assets[listBoxAssets.SelectedIndex].actualSize = x.Length;
+                            WriteNewSizeInEditableArray(psl.assets[listBoxAssets.SelectedIndex].absoluteActualSizeOffset, x.Length);
+
+                            listBoxAssets_SelectedIndexChanged(sender, e);
+                        }
+        }
+
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string whatIsAsset = listBoxAssets.GetItemText(listBoxAssets.SelectedItem);
+            if (whatIsAsset.Contains("SimpleObject"))
+            {
+                WhatIsSimpleObjectWindow simpAbout = new WhatIsSimpleObjectWindow();
+                simpAbout.ShowDialog();
+            }
+            if (whatIsAsset.Contains("Platform"))
+            {
+                WhatIsPlatformWindow platWindow = new WhatIsPlatformWindow();
+                platWindow.ShowDialog();
+            }
+            if (whatIsAsset.Contains("FloatingCollectible"))
+            {
+                WhatIsFloatingCollectible floatWindow = new WhatIsFloatingCollectible();
+                floatWindow.ShowDialog();
+            }
         }
     }
 }

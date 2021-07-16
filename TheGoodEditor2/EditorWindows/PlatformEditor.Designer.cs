@@ -33,8 +33,6 @@ namespace TheGoodEditor2.EditorWindows
             this.grupAssetProperties = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.saveDataEdited = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.btnApplyScaleX = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.lblScaleZ = new System.Windows.Forms.Label();
@@ -65,8 +63,6 @@ namespace TheGoodEditor2.EditorWindows
             // grupAssetProperties
             // 
             this.grupAssetProperties.Controls.Add(this.groupBox1);
-            this.grupAssetProperties.Controls.Add(this.button3);
-            this.grupAssetProperties.Controls.Add(this.button1);
             this.grupAssetProperties.Controls.Add(this.btnApplyScaleX);
             this.grupAssetProperties.Controls.Add(this.label1);
             this.grupAssetProperties.Controls.Add(this.lblScaleZ);
@@ -118,26 +114,7 @@ namespace TheGoodEditor2.EditorWindows
             this.saveDataEdited.TabIndex = 35;
             this.saveDataEdited.Text = "Save All Data Here to Asset";
             this.saveDataEdited.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(325, 288);
-            this.button3.Margin = new System.Windows.Forms.Padding(4);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(168, 28);
-            this.button3.TabIndex = 36;
-            this.button3.Text = "Clear all fields";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(8, 286);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(164, 30);
-            this.button1.TabIndex = 34;
-            this.button1.Text = "Randomize Fields";
-            this.button1.UseVisualStyleBackColor = true;
+            this.saveDataEdited.Click += new System.EventHandler(this.saveDataEdited_Click);
             // 
             // btnApplyScaleX
             // 
@@ -148,6 +125,7 @@ namespace TheGoodEditor2.EditorWindows
             this.btnApplyScaleX.TabIndex = 32;
             this.btnApplyScaleX.Text = "Apply Scale X To All Fields";
             this.btnApplyScaleX.UseVisualStyleBackColor = true;
+            this.btnApplyScaleX.Click += new System.EventHandler(this.btnApplyScaleX_Click);
             // 
             // label1
             // 
@@ -280,7 +258,7 @@ namespace TheGoodEditor2.EditorWindows
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(276, 23);
+            this.label5.Location = new System.Drawing.Point(322, 28);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(246, 17);
@@ -359,7 +337,9 @@ namespace TheGoodEditor2.EditorWindows
             this.Controls.Add(this.grupAssetProperties);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PlatformEditor";
-            this.Text = "PlatformEditor";
+            this.Text = "Edit Selected Platform Asset";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PlatformEditor_FormClosed);
+            this.Load += new System.EventHandler(this.PlatformEditor_Load);
             this.grupAssetProperties.ResumeLayout(false);
             this.grupAssetProperties.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -372,8 +352,6 @@ namespace TheGoodEditor2.EditorWindows
         private System.Windows.Forms.GroupBox grupAssetProperties;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button saveDataEdited;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnApplyScaleX;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblScaleZ;

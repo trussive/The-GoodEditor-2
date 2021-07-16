@@ -68,7 +68,6 @@
             this.buttonReplace = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.grupAssetOtherTools.SuspendLayout();
@@ -397,7 +396,6 @@
             // 
             // grupAssetOtherTools
             // 
-            this.grupAssetOtherTools.Controls.Add(this.button2);
             this.grupAssetOtherTools.Controls.Add(this.buttonExtractAll);
             this.grupAssetOtherTools.Controls.Add(this.buttonExtract);
             this.grupAssetOtherTools.Controls.Add(this.buttonReplace);
@@ -454,6 +452,7 @@
             this.button1.TabIndex = 38;
             this.button1.Text = "What\'s this asset type?";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // groupBox2
             // 
@@ -464,17 +463,6 @@
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Asset Help";
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(8, 151);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(439, 28);
-            this.button2.TabIndex = 38;
-            this.button2.Text = "Save Data from Editor Window to Selected Asset";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // MainWindow
             // 
@@ -542,7 +530,6 @@
         private System.Windows.Forms.Button buttonExtract;
         private System.Windows.Forms.Button buttonReplace;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button button2;
     }
 }
 
