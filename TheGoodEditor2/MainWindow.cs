@@ -12,6 +12,7 @@ using TheGoodEditor2.EditorWindows;
 using TheGoodEditor2.AboutAssets;
 using HiHoFile;
 using static HiHoFile.Extensions;
+using System.Globalization;
 
 namespace TheGoodEditor2
 {
@@ -112,16 +113,17 @@ namespace TheGoodEditor2
             dontSwitch = checkBox1.Checked;
         }
 
-        public void buttonExtractAll_Click(object sender, EventArgs e)
-        {
-            using (FolderBrowserDialog folderBrowser = new FolderBrowserDialog())
-                if (folderBrowser.ShowDialog() == DialogResult.OK)
-                    hoFile.ExtractAssetsToFolders(folderBrowser.SelectedPath, true);
-        }
         private void saveHoParcelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            File.WriteAllBytes(fileName, editableHoFile);
-        }
+            if (fileName == null)
+            {
+                MessageBox.Show("You have not opened a *.ho file yet, unable to save!");
+            }
+            else if (File.Exists(fileName))
+            {
+                File.WriteAllBytes(fileName, editableHoFile);
+            }
+        }        
 
         public void listBoxAssets_SelectedIndexChanged_1(object sender, EventArgs e)
         {
@@ -132,7 +134,7 @@ namespace TheGoodEditor2
         {
             this.Close();
         }
-        public byte[] x;
+        public static byte[] x;
         public static string SetValueForTextPosX = "";
         public static string SetValueForTextPosY = "";
         public static string SetValueForTextPosZ = "";
@@ -381,39 +383,6 @@ namespace TheGoodEditor2
                 }
         }
 
-        private void btnFindLayer_Click(object sender, EventArgs e)
-        {
-            listBoxLayers.ClearSelected();
-
-            int index = listBoxLayers.FindString(txtLayerSearch.Text);
-
-            if (index < 0)
-            {
-                MessageBox.Show("Could not find a layer with that search string.");
-                txtLayerSearch.Text = String.Empty;
-            }
-            else
-            {
-                listBoxLayers.SelectedIndex = index;
-            }
-        }
-
-        private void btnFindAsset_Click(object sender, EventArgs e)
-        {
-            listBoxAssets.ClearSelected();
-
-            int index = listBoxAssets.FindString(txtAssetSearch.Text);
-
-            if (index < 0)
-            {
-                MessageBox.Show("Could not find an asset with that search string.");
-                txtAssetSearch.Text = String.Empty;
-            }
-            else
-            {
-                listBoxAssets.SelectedIndex = index;
-            }
-        }
 
         private void btnLayerUp_Click(object sender, EventArgs e)
         {
@@ -470,15 +439,8 @@ namespace TheGoodEditor2
             gHelpToolTips.Show("This listbox shows which assets are in a layer.", listBoxAssets);
         }
 
-        private void txtLayerSearch_MouseHover(object sender, EventArgs e)
-        {
-            gHelpToolTips.Show("This searchbox lets you search and highlight the first search string in the search box", txtLayerSearch);
-        }
 
-        private void btnFindLayer_MouseHover(object sender, EventArgs e)
-        {
-            gHelpToolTips.Show("Press this button to search for a string.", btnFindLayer);
-        }
+
 
         private void btnLayerUp_MouseHover(object sender, EventArgs e)
         {
@@ -828,6 +790,61 @@ namespace TheGoodEditor2
                 WhatIsFloatingCollectible floatWindow = new WhatIsFloatingCollectible();
                 floatWindow.ShowDialog();
             }
+        }
+        
+     
+        private void btnOpenByteViewer_Click(object sender, EventArgs e)
+        {
+            ulong assetID = GetSelectedAssetID();
+
+            if (assetID != 0)
+                if (listBoxLayers.SelectedIndex > -1 && listBoxLayers.SelectedIndex < hoFile.MAST.sectionSect2.layers.Count)
+                    if (hoFile.MAST.sectionSect2.layers[listBoxLayers.SelectedIndex].subLayer is SubLayer_PSL psl)
+                        if (listBoxAssets.SelectedIndex > -1 && listBoxAssets.SelectedIndex < psl.assets.Count)
+                        {
+
+                            x = psl.assets[listBoxAssets.SelectedIndex].data;
+                            ByteViewerBox byteView = new ByteViewerBox();
+                            byteView.ShowDialog();
+                        }
+                        else if (listBoxAssets.SelectedIndex == -1)
+                            MessageBox.Show("You have not selected an asset! Please select an asset first!");
+            {
+                
+            }
+        }
+        
+        public void HexBox_CopiedHex(object sender, EventArgs e)
+        {
+            var hex = Clipboard.GetText();
+            var hexHex = hex.Split(' ');
+            var hexArr = new byte[hexHex.Length];
+            for (var i = 0; i < hexHex.Length; i++)
+            {
+                hexArr[i] = byte.Parse(hexHex[i], NumberStyles.AllowHexSpecifier);
+            }
+            ulong assetID = GetSelectedAssetID();
+
+            if (assetID != 0)
+                if (listBoxLayers.SelectedIndex > -1 && listBoxLayers.SelectedIndex < hoFile.MAST.sectionSect2.layers.Count)
+                    if (hoFile.MAST.sectionSect2.layers[listBoxLayers.SelectedIndex].subLayer is SubLayer_PSL psl)
+                        if (listBoxAssets.SelectedIndex > -1 && listBoxAssets.SelectedIndex < psl.assets.Count)
+                        {
+                            psl.assets[listBoxAssets.SelectedIndex].data = hexArr;
+                            ReplaceInEditableArray(psl.assets[listBoxAssets.SelectedIndex].absoluteDataOffset, hexArr, psl.assets[listBoxAssets.SelectedIndex].totalDataSize);
+
+                            psl.assets[listBoxAssets.SelectedIndex].actualSize = hexArr.Length;
+                            WriteNewSizeInEditableArray(psl.assets[listBoxAssets.SelectedIndex].absoluteActualSizeOffset, hexArr.Length);
+
+                            listBoxAssets_SelectedIndexChanged(sender, e);
+                        }
+                           
+
+        }
+
+        private void openTheSaveFileEditorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

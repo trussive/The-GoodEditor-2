@@ -54,6 +54,9 @@
     <ApplicationIcon>G2_Logo_2021_Revamp.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Be.Windows.Forms.HexBox, Version=1.6.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Be.Windows.Forms.HexBox.1.6.1\lib\net40\Be.Windows.Forms.HexBox.dll</HintPath>
+    </Reference>
     <Reference Include="DiscordRPC, Version=1.0.169.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DiscordRichPresence.1.0.169\lib\net35\DiscordRPC.dll</HintPath>
     </Reference>
@@ -113,11 +116,23 @@
       <DependentUpon>WhatIsSimpleObjectWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Discord\DiscordRPC.cs" />
+    <Compile Include="EditorWindows\ByteViewerBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditorWindows\ByteViewerBox.Designer.cs">
+      <DependentUpon>ByteViewerBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="EditorWindows\FloatingCollectibleEditorWindow.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="EditorWindows\FloatingCollectibleEditorWindow.Designer.cs">
       <DependentUpon>FloatingCollectibleEditorWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditorWindows\NoteTaker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditorWindows\NoteTaker.Designer.cs">
+      <DependentUpon>NoteTaker.cs</DependentUpon>
     </Compile>
     <Compile Include="EditorWindows\PlatformEditor.cs">
       <SubType>Form</SubType>
@@ -164,8 +179,14 @@
     <EmbeddedResource Include="AboutAssets\WhatIsSimpleObjectWindow.resx">
       <DependentUpon>WhatIsSimpleObjectWindow.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EditorWindows\ByteViewerBox.resx">
+      <DependentUpon>ByteViewerBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditorWindows\FloatingCollectibleEditorWindow.resx">
       <DependentUpon>FloatingCollectibleEditorWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditorWindows\NoteTaker.resx">
+      <DependentUpon>NoteTaker.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditorWindows\PlatformEditor.resx">
       <DependentUpon>PlatformEditor.cs</DependentUpon>

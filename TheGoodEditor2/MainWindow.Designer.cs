@@ -46,32 +46,36 @@
             this.listBoxLayers = new System.Windows.Forms.ListBox();
             this.listBoxAssets = new System.Windows.Forms.ListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.lblFineScrollLayers = new System.Windows.Forms.Label();
+            this.lblFineScroll = new System.Windows.Forms.Label();
             this.btnAssetDown = new System.Windows.Forms.Button();
             this.btnAssetUp = new System.Windows.Forms.Button();
             this.btnLayerDown = new System.Windows.Forms.Button();
             this.btnLayerUp = new System.Windows.Forms.Button();
-            this.btnFindAsset = new System.Windows.Forms.Button();
-            this.btnFindLayer = new System.Windows.Forms.Button();
-            this.lblAssetSearch = new System.Windows.Forms.Label();
-            this.txtAssetSearch = new System.Windows.Forms.TextBox();
-            this.lblLayerSearch = new System.Windows.Forms.Label();
-            this.txtLayerSearch = new System.Windows.Forms.TextBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.btnSendData = new System.Windows.Forms.Button();
             this.gHelpToolTips = new System.Windows.Forms.ToolTip(this.components);
             this.grupAssetOtherTools = new System.Windows.Forms.GroupBox();
             this.buttonExtractAll = new System.Windows.Forms.Button();
             this.buttonExtract = new System.Windows.Forms.Button();
             this.buttonReplace = new System.Windows.Forms.Button();
+            this.btnOpenByteViewer = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.grpByteViewerButtonContainer = new System.Windows.Forms.GroupBox();
+            this.openTheSaveFileEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.grupAssetOtherTools.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.grpByteViewerButtonContainer.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -130,7 +134,8 @@
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.exportLayerListToTextFileToolStripMenuItem,
-            this.exportAssetsListToTextFileToolStripMenuItem});
+            this.exportAssetsListToTextFileToolStripMenuItem,
+            this.openTheSaveFileEditorToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(58, 24);
             this.toolsToolStripMenuItem.Text = "Tools";
@@ -206,20 +211,14 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.checkBox2);
+            this.groupBox1.Controls.Add(this.groupBox4);
+            this.groupBox1.Controls.Add(this.groupBox3);
+            this.groupBox1.Controls.Add(this.lblFineScrollLayers);
+            this.groupBox1.Controls.Add(this.lblFineScroll);
             this.groupBox1.Controls.Add(this.btnAssetDown);
             this.groupBox1.Controls.Add(this.btnAssetUp);
             this.groupBox1.Controls.Add(this.btnLayerDown);
             this.groupBox1.Controls.Add(this.btnLayerUp);
-            this.groupBox1.Controls.Add(this.btnFindAsset);
-            this.groupBox1.Controls.Add(this.btnFindLayer);
-            this.groupBox1.Controls.Add(this.lblAssetSearch);
-            this.groupBox1.Controls.Add(this.txtAssetSearch);
-            this.groupBox1.Controls.Add(this.lblLayerSearch);
-            this.groupBox1.Controls.Add(this.txtLayerSearch);
-            this.groupBox1.Controls.Add(this.checkBox1);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.listBoxLayers);
             this.groupBox1.Controls.Add(this.listBoxAssets);
             this.groupBox1.Location = new System.Drawing.Point(16, 33);
@@ -231,141 +230,21 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Layers and Assets";
             // 
-            // checkBox2
+            // groupBox4
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(12, 92);
-            this.checkBox2.Margin = new System.Windows.Forms.Padding(4);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(158, 21);
-            this.checkBox2.TabIndex = 48;
-            this.checkBox2.Text = "Enable Discord RPC";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
-            // 
-            // btnAssetDown
-            // 
-            this.btnAssetDown.Location = new System.Drawing.Point(573, 133);
-            this.btnAssetDown.Margin = new System.Windows.Forms.Padding(4);
-            this.btnAssetDown.Name = "btnAssetDown";
-            this.btnAssetDown.Size = new System.Drawing.Size(33, 28);
-            this.btnAssetDown.TabIndex = 47;
-            this.btnAssetDown.Text = "↓";
-            this.btnAssetDown.UseVisualStyleBackColor = true;
-            this.btnAssetDown.Click += new System.EventHandler(this.btnAssetDown_Click);
-            // 
-            // btnAssetUp
-            // 
-            this.btnAssetUp.Location = new System.Drawing.Point(532, 133);
-            this.btnAssetUp.Margin = new System.Windows.Forms.Padding(4);
-            this.btnAssetUp.Name = "btnAssetUp";
-            this.btnAssetUp.Size = new System.Drawing.Size(33, 28);
-            this.btnAssetUp.TabIndex = 46;
-            this.btnAssetUp.Text = "↑";
-            this.btnAssetUp.UseVisualStyleBackColor = true;
-            this.btnAssetUp.Click += new System.EventHandler(this.btnAssetUp_Click);
-            // 
-            // btnLayerDown
-            // 
-            this.btnLayerDown.Location = new System.Drawing.Point(257, 135);
-            this.btnLayerDown.Margin = new System.Windows.Forms.Padding(4);
-            this.btnLayerDown.Name = "btnLayerDown";
-            this.btnLayerDown.Size = new System.Drawing.Size(33, 28);
-            this.btnLayerDown.TabIndex = 45;
-            this.btnLayerDown.Text = "↓";
-            this.btnLayerDown.UseVisualStyleBackColor = true;
-            this.btnLayerDown.Click += new System.EventHandler(this.btnLayerDown_Click);
-            this.btnLayerDown.MouseHover += new System.EventHandler(this.btnLayerDown_MouseHover);
-            // 
-            // btnLayerUp
-            // 
-            this.btnLayerUp.Location = new System.Drawing.Point(219, 135);
-            this.btnLayerUp.Margin = new System.Windows.Forms.Padding(4);
-            this.btnLayerUp.Name = "btnLayerUp";
-            this.btnLayerUp.Size = new System.Drawing.Size(33, 28);
-            this.btnLayerUp.TabIndex = 44;
-            this.btnLayerUp.Text = "↑";
-            this.btnLayerUp.UseVisualStyleBackColor = true;
-            this.btnLayerUp.Click += new System.EventHandler(this.btnLayerUp_Click);
-            this.btnLayerUp.MouseHover += new System.EventHandler(this.btnLayerUp_MouseHover);
-            // 
-            // btnFindAsset
-            // 
-            this.btnFindAsset.Location = new System.Drawing.Point(469, 134);
-            this.btnFindAsset.Margin = new System.Windows.Forms.Padding(4);
-            this.btnFindAsset.Name = "btnFindAsset";
-            this.btnFindAsset.Size = new System.Drawing.Size(57, 28);
-            this.btnFindAsset.TabIndex = 43;
-            this.btnFindAsset.Text = "Find";
-            this.btnFindAsset.UseVisualStyleBackColor = true;
-            this.btnFindAsset.Click += new System.EventHandler(this.btnFindAsset_Click);
-            // 
-            // btnFindLayer
-            // 
-            this.btnFindLayer.Location = new System.Drawing.Point(151, 134);
-            this.btnFindLayer.Margin = new System.Windows.Forms.Padding(4);
-            this.btnFindLayer.Name = "btnFindLayer";
-            this.btnFindLayer.Size = new System.Drawing.Size(57, 28);
-            this.btnFindLayer.TabIndex = 42;
-            this.btnFindLayer.Text = "Find";
-            this.btnFindLayer.UseVisualStyleBackColor = true;
-            this.btnFindLayer.Click += new System.EventHandler(this.btnFindLayer_Click);
-            this.btnFindLayer.MouseHover += new System.EventHandler(this.btnFindLayer_MouseHover);
-            // 
-            // lblAssetSearch
-            // 
-            this.lblAssetSearch.AutoSize = true;
-            this.lblAssetSearch.Location = new System.Drawing.Point(423, 117);
-            this.lblAssetSearch.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblAssetSearch.Name = "lblAssetSearch";
-            this.lblAssetSearch.Size = new System.Drawing.Size(92, 17);
-            this.lblAssetSearch.TabIndex = 41;
-            this.lblAssetSearch.Text = "Asset Search";
-            // 
-            // txtAssetSearch
-            // 
-            this.txtAssetSearch.Location = new System.Drawing.Point(315, 135);
-            this.txtAssetSearch.Margin = new System.Windows.Forms.Padding(4);
-            this.txtAssetSearch.Name = "txtAssetSearch";
-            this.txtAssetSearch.Size = new System.Drawing.Size(145, 22);
-            this.txtAssetSearch.TabIndex = 40;
-            // 
-            // lblLayerSearch
-            // 
-            this.lblLayerSearch.AutoSize = true;
-            this.lblLayerSearch.Location = new System.Drawing.Point(107, 117);
-            this.lblLayerSearch.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblLayerSearch.Name = "lblLayerSearch";
-            this.lblLayerSearch.Size = new System.Drawing.Size(93, 17);
-            this.lblLayerSearch.TabIndex = 39;
-            this.lblLayerSearch.Text = "Layer Search";
-            // 
-            // txtLayerSearch
-            // 
-            this.txtLayerSearch.Location = new System.Drawing.Point(12, 135);
-            this.txtLayerSearch.Margin = new System.Windows.Forms.Padding(4);
-            this.txtLayerSearch.Name = "txtLayerSearch";
-            this.txtLayerSearch.Size = new System.Drawing.Size(129, 22);
-            this.txtLayerSearch.TabIndex = 38;
-            this.txtLayerSearch.MouseHover += new System.EventHandler(this.txtLayerSearch_MouseHover);
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(12, 71);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(156, 21);
-            this.checkBox1.TabIndex = 36;
-            this.checkBox1.Text = "Little Endian Ho File";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            this.checkBox1.MouseHover += new System.EventHandler(this.checkBox1_MouseHover);
+            this.groupBox4.Controls.Add(this.label6);
+            this.groupBox4.Controls.Add(this.label4);
+            this.groupBox4.Location = new System.Drawing.Point(5, 25);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(430, 80);
+            this.groupBox4.TabIndex = 52;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Open Ho Parcel Details and Asset Size Details";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(8, 39);
+            this.label6.Location = new System.Drawing.Point(7, 44);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(39, 17);
@@ -376,12 +255,114 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(8, 23);
+            this.label4.Location = new System.Drawing.Point(7, 28);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(72, 17);
             this.label4.TabIndex = 34;
             this.label4.Text = "File: None";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.checkBox2);
+            this.groupBox3.Controls.Add(this.checkBox1);
+            this.groupBox3.Location = new System.Drawing.Point(441, 22);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(200, 83);
+            this.groupBox3.TabIndex = 51;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Misc. Options";
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(21, 45);
+            this.checkBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(158, 21);
+            this.checkBox2.TabIndex = 48;
+            this.checkBox2.Text = "Enable Discord RPC";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(21, 24);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(156, 21);
+            this.checkBox1.TabIndex = 36;
+            this.checkBox1.Text = "Little Endian Ho File";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.checkBox1.MouseHover += new System.EventHandler(this.checkBox1_MouseHover);
+            // 
+            // lblFineScrollLayers
+            // 
+            this.lblFineScrollLayers.AutoSize = true;
+            this.lblFineScrollLayers.Location = new System.Drawing.Point(64, 114);
+            this.lblFineScrollLayers.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblFineScrollLayers.Name = "lblFineScrollLayers";
+            this.lblFineScrollLayers.Size = new System.Drawing.Size(179, 17);
+            this.lblFineScrollLayers.TabIndex = 50;
+            this.lblFineScrollLayers.Text = "Fine Scroll Through Layers";
+            // 
+            // lblFineScroll
+            // 
+            this.lblFineScroll.AutoSize = true;
+            this.lblFineScroll.Location = new System.Drawing.Point(390, 114);
+            this.lblFineScroll.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblFineScroll.Name = "lblFineScroll";
+            this.lblFineScroll.Size = new System.Drawing.Size(178, 17);
+            this.lblFineScroll.TabIndex = 49;
+            this.lblFineScroll.Text = "Fine Scroll Through Assets";
+            // 
+            // btnAssetDown
+            // 
+            this.btnAssetDown.Location = new System.Drawing.Point(483, 135);
+            this.btnAssetDown.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAssetDown.Name = "btnAssetDown";
+            this.btnAssetDown.Size = new System.Drawing.Size(144, 28);
+            this.btnAssetDown.TabIndex = 47;
+            this.btnAssetDown.Text = "↓";
+            this.btnAssetDown.UseVisualStyleBackColor = true;
+            this.btnAssetDown.Click += new System.EventHandler(this.btnAssetDown_Click);
+            // 
+            // btnAssetUp
+            // 
+            this.btnAssetUp.Location = new System.Drawing.Point(315, 135);
+            this.btnAssetUp.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAssetUp.Name = "btnAssetUp";
+            this.btnAssetUp.Size = new System.Drawing.Size(145, 28);
+            this.btnAssetUp.TabIndex = 46;
+            this.btnAssetUp.Text = "↑";
+            this.btnAssetUp.UseVisualStyleBackColor = true;
+            this.btnAssetUp.Click += new System.EventHandler(this.btnAssetUp_Click);
+            // 
+            // btnLayerDown
+            // 
+            this.btnLayerDown.Location = new System.Drawing.Point(164, 135);
+            this.btnLayerDown.Margin = new System.Windows.Forms.Padding(4);
+            this.btnLayerDown.Name = "btnLayerDown";
+            this.btnLayerDown.Size = new System.Drawing.Size(129, 28);
+            this.btnLayerDown.TabIndex = 45;
+            this.btnLayerDown.Text = "↓";
+            this.btnLayerDown.UseVisualStyleBackColor = true;
+            this.btnLayerDown.Click += new System.EventHandler(this.btnLayerDown_Click);
+            this.btnLayerDown.MouseHover += new System.EventHandler(this.btnLayerDown_MouseHover);
+            // 
+            // btnLayerUp
+            // 
+            this.btnLayerUp.Location = new System.Drawing.Point(11, 135);
+            this.btnLayerUp.Margin = new System.Windows.Forms.Padding(4);
+            this.btnLayerUp.Name = "btnLayerUp";
+            this.btnLayerUp.Size = new System.Drawing.Size(130, 28);
+            this.btnLayerUp.TabIndex = 44;
+            this.btnLayerUp.Text = "↑";
+            this.btnLayerUp.UseVisualStyleBackColor = true;
+            this.btnLayerUp.Click += new System.EventHandler(this.btnLayerUp_Click);
+            this.btnLayerUp.MouseHover += new System.EventHandler(this.btnLayerUp_MouseHover);
             // 
             // btnSendData
             // 
@@ -443,6 +424,16 @@
             this.buttonReplace.UseVisualStyleBackColor = true;
             this.buttonReplace.Click += new System.EventHandler(this.buttonReplace_Click_2);
             // 
+            // btnOpenByteViewer
+            // 
+            this.btnOpenByteViewer.Location = new System.Drawing.Point(8, 21);
+            this.btnOpenByteViewer.Name = "btnOpenByteViewer";
+            this.btnOpenByteViewer.Size = new System.Drawing.Size(440, 39);
+            this.btnOpenByteViewer.TabIndex = 38;
+            this.btnOpenByteViewer.Text = "Open the Byte Viewer";
+            this.btnOpenByteViewer.UseVisualStyleBackColor = true;
+            this.btnOpenByteViewer.Click += new System.EventHandler(this.btnOpenByteViewer_Click);
+            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(7, 22);
@@ -464,11 +455,30 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Asset Help";
             // 
+            // grpByteViewerButtonContainer
+            // 
+            this.grpByteViewerButtonContainer.Controls.Add(this.btnOpenByteViewer);
+            this.grpByteViewerButtonContainer.Location = new System.Drawing.Point(672, 348);
+            this.grpByteViewerButtonContainer.Name = "grpByteViewerButtonContainer";
+            this.grpByteViewerButtonContainer.Size = new System.Drawing.Size(455, 71);
+            this.grpByteViewerButtonContainer.TabIndex = 8;
+            this.grpByteViewerButtonContainer.TabStop = false;
+            this.grpByteViewerButtonContainer.Text = "Byte Viewer Controls";
+            // 
+            // openTheSaveFileEditorToolStripMenuItem
+            // 
+            this.openTheSaveFileEditorToolStripMenuItem.Name = "openTheSaveFileEditorToolStripMenuItem";
+            this.openTheSaveFileEditorToolStripMenuItem.Size = new System.Drawing.Size(278, 26);
+            this.openTheSaveFileEditorToolStripMenuItem.Text = "Open the Save File Editor...";
+            this.openTheSaveFileEditorToolStripMenuItem.Visible = false;
+            this.openTheSaveFileEditorToolStripMenuItem.Click += new System.EventHandler(this.openTheSaveFileEditorToolStripMenuItem_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1146, 645);
+            this.Controls.Add(this.grpByteViewerButtonContainer);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.grupAssetOtherTools);
             this.Controls.Add(this.groupBox1);
@@ -483,8 +493,13 @@
             this.menuStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.grupAssetOtherTools.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
+            this.grpByteViewerButtonContainer.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -511,12 +526,6 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button btnSendData;
         private System.Windows.Forms.ToolStripMenuItem saveHoParcelAsToolStripMenuItem;
-        private System.Windows.Forms.Label lblAssetSearch;
-        private System.Windows.Forms.TextBox txtAssetSearch;
-        private System.Windows.Forms.Label lblLayerSearch;
-        private System.Windows.Forms.TextBox txtLayerSearch;
-        private System.Windows.Forms.Button btnFindAsset;
-        private System.Windows.Forms.Button btnFindLayer;
         private System.Windows.Forms.Button btnAssetDown;
         private System.Windows.Forms.Button btnAssetUp;
         private System.Windows.Forms.Button btnLayerDown;
@@ -530,6 +539,13 @@
         private System.Windows.Forms.Button buttonExtract;
         private System.Windows.Forms.Button buttonReplace;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label lblFineScrollLayers;
+        private System.Windows.Forms.Label lblFineScroll;
+        private System.Windows.Forms.Button btnOpenByteViewer;
+        private System.Windows.Forms.GroupBox grpByteViewerButtonContainer;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.ToolStripMenuItem openTheSaveFileEditorToolStripMenuItem;
     }
 }
 
