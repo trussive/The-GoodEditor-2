@@ -39,6 +39,7 @@
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportLayerListToTextFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportAssetsListToTextFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openTheSaveFileEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.propertiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutTheGoodEditor2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -68,7 +69,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.grpByteViewerButtonContainer = new System.Windows.Forms.GroupBox();
-            this.openTheSaveFileEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.grpTextureControls = new System.Windows.Forms.GroupBox();
+            this.btnOpenTextureViewer = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -76,6 +78,7 @@
             this.grupAssetOtherTools.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.grpByteViewerButtonContainer.SuspendLayout();
+            this.grpTextureControls.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -153,6 +156,14 @@
             this.exportAssetsListToTextFileToolStripMenuItem.Size = new System.Drawing.Size(278, 26);
             this.exportAssetsListToTextFileToolStripMenuItem.Text = "Export Asset List To Text File";
             this.exportAssetsListToTextFileToolStripMenuItem.Click += new System.EventHandler(this.exportAssetsListToTextFileToolStripMenuItem_Click);
+            // 
+            // openTheSaveFileEditorToolStripMenuItem
+            // 
+            this.openTheSaveFileEditorToolStripMenuItem.Name = "openTheSaveFileEditorToolStripMenuItem";
+            this.openTheSaveFileEditorToolStripMenuItem.Size = new System.Drawing.Size(278, 26);
+            this.openTheSaveFileEditorToolStripMenuItem.Text = "Open the Save File Editor...";
+            this.openTheSaveFileEditorToolStripMenuItem.Visible = false;
+            this.openTheSaveFileEditorToolStripMenuItem.Click += new System.EventHandler(this.openTheSaveFileEditorToolStripMenuItem_Click);
             // 
             // propertiesToolStripMenuItem
             // 
@@ -465,19 +476,32 @@
             this.grpByteViewerButtonContainer.TabStop = false;
             this.grpByteViewerButtonContainer.Text = "Byte Viewer Controls";
             // 
-            // openTheSaveFileEditorToolStripMenuItem
+            // grpTextureControls
             // 
-            this.openTheSaveFileEditorToolStripMenuItem.Name = "openTheSaveFileEditorToolStripMenuItem";
-            this.openTheSaveFileEditorToolStripMenuItem.Size = new System.Drawing.Size(278, 26);
-            this.openTheSaveFileEditorToolStripMenuItem.Text = "Open the Save File Editor...";
-            this.openTheSaveFileEditorToolStripMenuItem.Visible = false;
-            this.openTheSaveFileEditorToolStripMenuItem.Click += new System.EventHandler(this.openTheSaveFileEditorToolStripMenuItem_Click);
+            this.grpTextureControls.Controls.Add(this.btnOpenTextureViewer);
+            this.grpTextureControls.Location = new System.Drawing.Point(672, 425);
+            this.grpTextureControls.Name = "grpTextureControls";
+            this.grpTextureControls.Size = new System.Drawing.Size(455, 70);
+            this.grpTextureControls.TabIndex = 9;
+            this.grpTextureControls.TabStop = false;
+            this.grpTextureControls.Text = "Texture Viewer Controls";
+            // 
+            // btnOpenTextureViewer
+            // 
+            this.btnOpenTextureViewer.Location = new System.Drawing.Point(6, 21);
+            this.btnOpenTextureViewer.Name = "btnOpenTextureViewer";
+            this.btnOpenTextureViewer.Size = new System.Drawing.Size(440, 39);
+            this.btnOpenTextureViewer.TabIndex = 39;
+            this.btnOpenTextureViewer.Text = "Open the Texture Viewer";
+            this.btnOpenTextureViewer.UseVisualStyleBackColor = true;
+            this.btnOpenTextureViewer.Click += new System.EventHandler(this.button2_Click_2);
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1146, 645);
+            this.Controls.Add(this.grpTextureControls);
             this.Controls.Add(this.grpByteViewerButtonContainer);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.grupAssetOtherTools);
@@ -500,6 +524,7 @@
             this.grupAssetOtherTools.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.grpByteViewerButtonContainer.ResumeLayout(false);
+            this.grpTextureControls.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -546,6 +571,8 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.ToolStripMenuItem openTheSaveFileEditorToolStripMenuItem;
+        private System.Windows.Forms.GroupBox grpTextureControls;
+        private System.Windows.Forms.Button btnOpenTextureViewer;
     }
 }
 

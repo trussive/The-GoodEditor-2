@@ -11,9 +11,9 @@ namespace HiHoFile
         public int relativeDataOffset;
         public int actualSize; // data size without padding
         public int unk0C;
-        public string assetName;
         public ulong assetID;
         public uint assetType;
+        public string assetName; // The asset's name
         public int unk1C;
         public byte[] data;
         public int absoluteDataOffset; // used only for replacement
@@ -29,6 +29,7 @@ namespace HiHoFile
             assetID = binaryReader.ReadUInt64().Switch();
             assetType = binaryReader.ReadUInt32().Switch();
             unk1C = binaryReader.ReadInt32().Switch();
+
 
             var position = binaryReader.BaseStream.Position;
 

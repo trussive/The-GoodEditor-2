@@ -846,5 +846,21 @@ namespace TheGoodEditor2
         {
 
         }
+
+        private void button2_Click_2(object sender, EventArgs e)
+        {
+                ulong assetID = GetSelectedAssetID();
+
+                if (assetID != 0)
+                    if (listBoxLayers.SelectedIndex > -1 && listBoxLayers.SelectedIndex < hoFile.MAST.sectionSect2.layers.Count)
+                        if (hoFile.MAST.sectionSect2.layers[listBoxLayers.SelectedIndex].subLayer is SubLayer_PSL psl)
+                            if (listBoxAssets.SelectedIndex > -1 && listBoxAssets.SelectedIndex < psl.assets.Count)
+                            {
+                                x = psl.assets[listBoxAssets.SelectedIndex].data;
+                                TextureViewer texView = new TextureViewer();
+                                texView.ShowDialog();
+                            }
+
+        }
     }
 }
