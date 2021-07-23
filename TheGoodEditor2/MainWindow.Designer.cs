@@ -71,6 +71,8 @@
             this.grpByteViewerButtonContainer = new System.Windows.Forms.GroupBox();
             this.grpTextureControls = new System.Windows.Forms.GroupBox();
             this.btnOpenTextureViewer = new System.Windows.Forms.Button();
+            this.grpPreviewContainer = new System.Windows.Forms.GroupBox();
+            this.texturePreviewBox = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -79,6 +81,8 @@
             this.groupBox2.SuspendLayout();
             this.grpByteViewerButtonContainer.SuspendLayout();
             this.grpTextureControls.SuspendLayout();
+            this.grpPreviewContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.texturePreviewBox)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -478,23 +482,44 @@
             // 
             // grpTextureControls
             // 
+            this.grpTextureControls.Controls.Add(this.grpPreviewContainer);
             this.grpTextureControls.Controls.Add(this.btnOpenTextureViewer);
             this.grpTextureControls.Location = new System.Drawing.Point(672, 425);
             this.grpTextureControls.Name = "grpTextureControls";
-            this.grpTextureControls.Size = new System.Drawing.Size(455, 70);
+            this.grpTextureControls.Size = new System.Drawing.Size(455, 200);
             this.grpTextureControls.TabIndex = 9;
             this.grpTextureControls.TabStop = false;
             this.grpTextureControls.Text = "Texture Viewer Controls";
             // 
             // btnOpenTextureViewer
             // 
-            this.btnOpenTextureViewer.Location = new System.Drawing.Point(6, 21);
+            this.btnOpenTextureViewer.Location = new System.Drawing.Point(214, 155);
             this.btnOpenTextureViewer.Name = "btnOpenTextureViewer";
-            this.btnOpenTextureViewer.Size = new System.Drawing.Size(440, 39);
+            this.btnOpenTextureViewer.Size = new System.Drawing.Size(232, 39);
             this.btnOpenTextureViewer.TabIndex = 39;
-            this.btnOpenTextureViewer.Text = "Open the Texture Viewer";
+            this.btnOpenTextureViewer.Text = "Open Previewed Texture";
             this.btnOpenTextureViewer.UseVisualStyleBackColor = true;
             this.btnOpenTextureViewer.Click += new System.EventHandler(this.button2_Click_2);
+            // 
+            // grpPreviewContainer
+            // 
+            this.grpPreviewContainer.Controls.Add(this.texturePreviewBox);
+            this.grpPreviewContainer.Location = new System.Drawing.Point(8, 21);
+            this.grpPreviewContainer.Name = "grpPreviewContainer";
+            this.grpPreviewContainer.Size = new System.Drawing.Size(200, 173);
+            this.grpPreviewContainer.TabIndex = 40;
+            this.grpPreviewContainer.TabStop = false;
+            this.grpPreviewContainer.Text = "Preview Selected Texture";
+            // 
+            // texturePreviewBox
+            // 
+            this.texturePreviewBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.texturePreviewBox.Location = new System.Drawing.Point(3, 18);
+            this.texturePreviewBox.Name = "texturePreviewBox";
+            this.texturePreviewBox.Size = new System.Drawing.Size(194, 152);
+            this.texturePreviewBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.texturePreviewBox.TabIndex = 0;
+            this.texturePreviewBox.TabStop = false;
             // 
             // MainWindow
             // 
@@ -525,6 +550,8 @@
             this.groupBox2.ResumeLayout(false);
             this.grpByteViewerButtonContainer.ResumeLayout(false);
             this.grpTextureControls.ResumeLayout(false);
+            this.grpPreviewContainer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.texturePreviewBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -573,6 +600,8 @@
         private System.Windows.Forms.ToolStripMenuItem openTheSaveFileEditorToolStripMenuItem;
         private System.Windows.Forms.GroupBox grpTextureControls;
         private System.Windows.Forms.Button btnOpenTextureViewer;
+        private System.Windows.Forms.GroupBox grpPreviewContainer;
+        private System.Windows.Forms.PictureBox texturePreviewBox;
     }
 }
 

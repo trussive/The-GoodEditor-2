@@ -13,6 +13,7 @@ using TheGoodEditor2.AboutAssets;
 using HiHoFile;
 using static HiHoFile.Extensions;
 using System.Globalization;
+using libWiiSharp;
 
 namespace TheGoodEditor2
 {
@@ -123,14 +124,39 @@ namespace TheGoodEditor2
             {
                 File.WriteAllBytes(fileName, editableHoFile);
             }
-        }        
+        }
 
         public void listBoxAssets_SelectedIndexChanged_1(object sender, EventArgs e)
         {
+            ulong assetID = GetSelectedAssetID();
 
+            if (assetID != 0)
+                if (listBoxLayers.SelectedIndex > -1 && listBoxLayers.SelectedIndex < hoFile.MAST.sectionSect2.layers.Count)
+                    if (hoFile.MAST.sectionSect2.layers[listBoxLayers.SelectedIndex].subLayer is SubLayer_PSL psl)
+                        if (listBoxAssets.SelectedIndex > -1 && listBoxAssets.SelectedIndex < psl.assets.Count)
+                        {
+                            if (listBoxAssets.SelectedIndex <= -1)
+                            {
+                                listBoxAssets.SelectedIndex = 0;
+                            }
+                            if (listBoxAssets.SelectedIndex > -1)
+                            {
+                                string isWhatItem = listBoxAssets.GetItemText(listBoxAssets.SelectedItem);
+                                if (isWhatItem.Contains("BDE21A8D"))
+                                {
+                                    x = psl.assets[listBoxAssets.SelectedIndex].data;
+                                    byte[] untrimmed = x;
+                                    byte[] trimmed = untrimmed.Skip(32).ToArray();
+                                    var bmp = TPL.Load(trimmed);
+                                    Bitmap newbmp = new Bitmap(bmp.ExtractTexture());
+
+                                    texturePreviewBox.Image = newbmp;
+                                }
+                                
+                            }
+                        }
         }
-
-        public void exitTheGoodEditor2ToolStripMenuItem_Click(object sender, EventArgs e)
+            public void exitTheGoodEditor2ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
         }
