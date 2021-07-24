@@ -70,9 +70,10 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.grpByteViewerButtonContainer = new System.Windows.Forms.GroupBox();
             this.grpTextureControls = new System.Windows.Forms.GroupBox();
-            this.btnOpenTextureViewer = new System.Windows.Forms.Button();
             this.grpPreviewContainer = new System.Windows.Forms.GroupBox();
             this.texturePreviewBox = new System.Windows.Forms.PictureBox();
+            this.btnOpenTextureViewer = new System.Windows.Forms.Button();
+            this.renderButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -94,7 +95,8 @@
             this.propertiesToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1146, 28);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(860, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -106,34 +108,34 @@
             this.saveHoParcelAsToolStripMenuItem,
             this.exitTheGoodEditor2ToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // loadHoParcelToolStripMenuItem
             // 
             this.loadHoParcelToolStripMenuItem.Name = "loadHoParcelToolStripMenuItem";
-            this.loadHoParcelToolStripMenuItem.Size = new System.Drawing.Size(237, 26);
+            this.loadHoParcelToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.loadHoParcelToolStripMenuItem.Text = "Load Ho Parcel";
             this.loadHoParcelToolStripMenuItem.Click += new System.EventHandler(this.loadHoParcelToolStripMenuItem_Click);
             // 
             // saveHoParcelToolStripMenuItem
             // 
             this.saveHoParcelToolStripMenuItem.Name = "saveHoParcelToolStripMenuItem";
-            this.saveHoParcelToolStripMenuItem.Size = new System.Drawing.Size(237, 26);
+            this.saveHoParcelToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.saveHoParcelToolStripMenuItem.Text = "Save Ho Parcel";
             this.saveHoParcelToolStripMenuItem.Click += new System.EventHandler(this.saveHoParcelToolStripMenuItem_Click);
             // 
             // saveHoParcelAsToolStripMenuItem
             // 
             this.saveHoParcelAsToolStripMenuItem.Name = "saveHoParcelAsToolStripMenuItem";
-            this.saveHoParcelAsToolStripMenuItem.Size = new System.Drawing.Size(237, 26);
+            this.saveHoParcelAsToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.saveHoParcelAsToolStripMenuItem.Text = "Save Ho Parcel As";
             this.saveHoParcelAsToolStripMenuItem.Click += new System.EventHandler(this.saveHoParcelAsToolStripMenuItem_Click);
             // 
             // exitTheGoodEditor2ToolStripMenuItem
             // 
             this.exitTheGoodEditor2ToolStripMenuItem.Name = "exitTheGoodEditor2ToolStripMenuItem";
-            this.exitTheGoodEditor2ToolStripMenuItem.Size = new System.Drawing.Size(237, 26);
+            this.exitTheGoodEditor2ToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.exitTheGoodEditor2ToolStripMenuItem.Text = "Exit The GoodEditor 2";
             this.exitTheGoodEditor2ToolStripMenuItem.Click += new System.EventHandler(this.exitTheGoodEditor2ToolStripMenuItem_Click);
             // 
@@ -144,27 +146,27 @@
             this.exportAssetsListToTextFileToolStripMenuItem,
             this.openTheSaveFileEditorToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(58, 24);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
             // 
             // exportLayerListToTextFileToolStripMenuItem
             // 
             this.exportLayerListToTextFileToolStripMenuItem.Name = "exportLayerListToTextFileToolStripMenuItem";
-            this.exportLayerListToTextFileToolStripMenuItem.Size = new System.Drawing.Size(278, 26);
+            this.exportLayerListToTextFileToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
             this.exportLayerListToTextFileToolStripMenuItem.Text = "Export Layer List To Text File";
             this.exportLayerListToTextFileToolStripMenuItem.Click += new System.EventHandler(this.exportLayerListToTextFileToolStripMenuItem_Click);
             // 
             // exportAssetsListToTextFileToolStripMenuItem
             // 
             this.exportAssetsListToTextFileToolStripMenuItem.Name = "exportAssetsListToTextFileToolStripMenuItem";
-            this.exportAssetsListToTextFileToolStripMenuItem.Size = new System.Drawing.Size(278, 26);
+            this.exportAssetsListToTextFileToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
             this.exportAssetsListToTextFileToolStripMenuItem.Text = "Export Asset List To Text File";
             this.exportAssetsListToTextFileToolStripMenuItem.Click += new System.EventHandler(this.exportAssetsListToTextFileToolStripMenuItem_Click);
             // 
             // openTheSaveFileEditorToolStripMenuItem
             // 
             this.openTheSaveFileEditorToolStripMenuItem.Name = "openTheSaveFileEditorToolStripMenuItem";
-            this.openTheSaveFileEditorToolStripMenuItem.Size = new System.Drawing.Size(278, 26);
+            this.openTheSaveFileEditorToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
             this.openTheSaveFileEditorToolStripMenuItem.Text = "Open the Save File Editor...";
             this.openTheSaveFileEditorToolStripMenuItem.Visible = false;
             this.openTheSaveFileEditorToolStripMenuItem.Click += new System.EventHandler(this.openTheSaveFileEditorToolStripMenuItem_Click);
@@ -176,38 +178,36 @@
             this.helpToolStripMenuItem,
             this.disableToolTipsToolStripMenuItem});
             this.propertiesToolStripMenuItem.Name = "propertiesToolStripMenuItem";
-            this.propertiesToolStripMenuItem.Size = new System.Drawing.Size(90, 24);
+            this.propertiesToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
             this.propertiesToolStripMenuItem.Text = "Properties";
             // 
             // aboutTheGoodEditor2ToolStripMenuItem
             // 
             this.aboutTheGoodEditor2ToolStripMenuItem.Name = "aboutTheGoodEditor2ToolStripMenuItem";
-            this.aboutTheGoodEditor2ToolStripMenuItem.Size = new System.Drawing.Size(251, 26);
+            this.aboutTheGoodEditor2ToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.aboutTheGoodEditor2ToolStripMenuItem.Text = "About the GoodEditor 2";
             this.aboutTheGoodEditor2ToolStripMenuItem.Click += new System.EventHandler(this.aboutTheGoodEditor2ToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(251, 26);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.helpToolStripMenuItem.Text = "Enable ToolTips";
             this.helpToolStripMenuItem.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
             // 
             // disableToolTipsToolStripMenuItem
             // 
             this.disableToolTipsToolStripMenuItem.Name = "disableToolTipsToolStripMenuItem";
-            this.disableToolTipsToolStripMenuItem.Size = new System.Drawing.Size(251, 26);
+            this.disableToolTipsToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.disableToolTipsToolStripMenuItem.Text = "Disable ToolTips";
             this.disableToolTipsToolStripMenuItem.Click += new System.EventHandler(this.disableToolTipsToolStripMenuItem_Click);
             // 
             // listBoxLayers
             // 
             this.listBoxLayers.FormattingEnabled = true;
-            this.listBoxLayers.ItemHeight = 16;
-            this.listBoxLayers.Location = new System.Drawing.Point(8, 167);
-            this.listBoxLayers.Margin = new System.Windows.Forms.Padding(4);
+            this.listBoxLayers.Location = new System.Drawing.Point(6, 136);
             this.listBoxLayers.Name = "listBoxLayers";
-            this.listBoxLayers.Size = new System.Drawing.Size(297, 404);
+            this.listBoxLayers.Size = new System.Drawing.Size(224, 329);
             this.listBoxLayers.TabIndex = 2;
             this.listBoxLayers.SelectedIndexChanged += new System.EventHandler(this.listBoxLayers_SelectedIndexChanged);
             this.listBoxLayers.MouseHover += new System.EventHandler(this.listBoxLayers_MouseHover);
@@ -215,11 +215,9 @@
             // listBoxAssets
             // 
             this.listBoxAssets.FormattingEnabled = true;
-            this.listBoxAssets.ItemHeight = 16;
-            this.listBoxAssets.Location = new System.Drawing.Point(315, 167);
-            this.listBoxAssets.Margin = new System.Windows.Forms.Padding(4);
+            this.listBoxAssets.Location = new System.Drawing.Point(236, 136);
             this.listBoxAssets.Name = "listBoxAssets";
-            this.listBoxAssets.Size = new System.Drawing.Size(312, 404);
+            this.listBoxAssets.Size = new System.Drawing.Size(235, 329);
             this.listBoxAssets.TabIndex = 1;
             this.listBoxAssets.SelectedIndexChanged += new System.EventHandler(this.listBoxAssets_SelectedIndexChanged_1);
             this.listBoxAssets.MouseHover += new System.EventHandler(this.listBoxAssets_MouseHover);
@@ -236,11 +234,9 @@
             this.groupBox1.Controls.Add(this.btnLayerUp);
             this.groupBox1.Controls.Add(this.listBoxLayers);
             this.groupBox1.Controls.Add(this.listBoxAssets);
-            this.groupBox1.Location = new System.Drawing.Point(16, 33);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Location = new System.Drawing.Point(12, 27);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(648, 592);
+            this.groupBox1.Size = new System.Drawing.Size(486, 481);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Layers and Assets";
@@ -249,9 +245,11 @@
             // 
             this.groupBox4.Controls.Add(this.label6);
             this.groupBox4.Controls.Add(this.label4);
-            this.groupBox4.Location = new System.Drawing.Point(5, 25);
+            this.groupBox4.Location = new System.Drawing.Point(4, 20);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(430, 80);
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox4.Size = new System.Drawing.Size(322, 65);
             this.groupBox4.TabIndex = 52;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Open Ho Parcel Details and Asset Size Details";
@@ -259,10 +257,9 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(7, 44);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(5, 36);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(39, 17);
+            this.label6.Size = new System.Drawing.Size(30, 13);
             this.label6.TabIndex = 35;
             this.label6.Text = "Size:";
             this.label6.Click += new System.EventHandler(this.label6_Click);
@@ -270,10 +267,9 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 28);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(5, 23);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(72, 17);
+            this.label4.Size = new System.Drawing.Size(55, 13);
             this.label4.TabIndex = 34;
             this.label4.Text = "File: None";
             // 
@@ -281,9 +277,11 @@
             // 
             this.groupBox3.Controls.Add(this.checkBox2);
             this.groupBox3.Controls.Add(this.checkBox1);
-            this.groupBox3.Location = new System.Drawing.Point(441, 22);
+            this.groupBox3.Location = new System.Drawing.Point(331, 18);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(200, 83);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox3.Size = new System.Drawing.Size(150, 67);
             this.groupBox3.TabIndex = 51;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Misc. Options";
@@ -291,10 +289,9 @@
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(21, 45);
-            this.checkBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBox2.Location = new System.Drawing.Point(16, 37);
             this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(158, 21);
+            this.checkBox2.Size = new System.Drawing.Size(123, 17);
             this.checkBox2.TabIndex = 48;
             this.checkBox2.Text = "Enable Discord RPC";
             this.checkBox2.UseVisualStyleBackColor = true;
@@ -303,10 +300,9 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(21, 24);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBox1.Location = new System.Drawing.Point(16, 20);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(156, 21);
+            this.checkBox1.Size = new System.Drawing.Size(120, 17);
             this.checkBox1.TabIndex = 36;
             this.checkBox1.Text = "Little Endian Ho File";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -316,29 +312,26 @@
             // lblFineScrollLayers
             // 
             this.lblFineScrollLayers.AutoSize = true;
-            this.lblFineScrollLayers.Location = new System.Drawing.Point(64, 114);
-            this.lblFineScrollLayers.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblFineScrollLayers.Location = new System.Drawing.Point(48, 93);
             this.lblFineScrollLayers.Name = "lblFineScrollLayers";
-            this.lblFineScrollLayers.Size = new System.Drawing.Size(179, 17);
+            this.lblFineScrollLayers.Size = new System.Drawing.Size(133, 13);
             this.lblFineScrollLayers.TabIndex = 50;
             this.lblFineScrollLayers.Text = "Fine Scroll Through Layers";
             // 
             // lblFineScroll
             // 
             this.lblFineScroll.AutoSize = true;
-            this.lblFineScroll.Location = new System.Drawing.Point(390, 114);
-            this.lblFineScroll.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblFineScroll.Location = new System.Drawing.Point(292, 93);
             this.lblFineScroll.Name = "lblFineScroll";
-            this.lblFineScroll.Size = new System.Drawing.Size(178, 17);
+            this.lblFineScroll.Size = new System.Drawing.Size(133, 13);
             this.lblFineScroll.TabIndex = 49;
             this.lblFineScroll.Text = "Fine Scroll Through Assets";
             // 
             // btnAssetDown
             // 
-            this.btnAssetDown.Location = new System.Drawing.Point(483, 135);
-            this.btnAssetDown.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAssetDown.Location = new System.Drawing.Point(362, 110);
             this.btnAssetDown.Name = "btnAssetDown";
-            this.btnAssetDown.Size = new System.Drawing.Size(144, 28);
+            this.btnAssetDown.Size = new System.Drawing.Size(108, 23);
             this.btnAssetDown.TabIndex = 47;
             this.btnAssetDown.Text = "↓";
             this.btnAssetDown.UseVisualStyleBackColor = true;
@@ -346,10 +339,9 @@
             // 
             // btnAssetUp
             // 
-            this.btnAssetUp.Location = new System.Drawing.Point(315, 135);
-            this.btnAssetUp.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAssetUp.Location = new System.Drawing.Point(236, 110);
             this.btnAssetUp.Name = "btnAssetUp";
-            this.btnAssetUp.Size = new System.Drawing.Size(145, 28);
+            this.btnAssetUp.Size = new System.Drawing.Size(109, 23);
             this.btnAssetUp.TabIndex = 46;
             this.btnAssetUp.Text = "↑";
             this.btnAssetUp.UseVisualStyleBackColor = true;
@@ -357,10 +349,9 @@
             // 
             // btnLayerDown
             // 
-            this.btnLayerDown.Location = new System.Drawing.Point(164, 135);
-            this.btnLayerDown.Margin = new System.Windows.Forms.Padding(4);
+            this.btnLayerDown.Location = new System.Drawing.Point(123, 110);
             this.btnLayerDown.Name = "btnLayerDown";
-            this.btnLayerDown.Size = new System.Drawing.Size(129, 28);
+            this.btnLayerDown.Size = new System.Drawing.Size(97, 23);
             this.btnLayerDown.TabIndex = 45;
             this.btnLayerDown.Text = "↓";
             this.btnLayerDown.UseVisualStyleBackColor = true;
@@ -369,10 +360,9 @@
             // 
             // btnLayerUp
             // 
-            this.btnLayerUp.Location = new System.Drawing.Point(11, 135);
-            this.btnLayerUp.Margin = new System.Windows.Forms.Padding(4);
+            this.btnLayerUp.Location = new System.Drawing.Point(8, 110);
             this.btnLayerUp.Name = "btnLayerUp";
-            this.btnLayerUp.Size = new System.Drawing.Size(130, 28);
+            this.btnLayerUp.Size = new System.Drawing.Size(98, 23);
             this.btnLayerUp.TabIndex = 44;
             this.btnLayerUp.Text = "↑";
             this.btnLayerUp.UseVisualStyleBackColor = true;
@@ -381,10 +371,9 @@
             // 
             // btnSendData
             // 
-            this.btnSendData.Location = new System.Drawing.Point(8, 187);
-            this.btnSendData.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSendData.Location = new System.Drawing.Point(6, 140);
             this.btnSendData.Name = "btnSendData";
-            this.btnSendData.Size = new System.Drawing.Size(439, 28);
+            this.btnSendData.Size = new System.Drawing.Size(329, 23);
             this.btnSendData.TabIndex = 37;
             this.btnSendData.Text = "Edit Selected Asset";
             this.btnSendData.UseVisualStyleBackColor = true;
@@ -392,15 +381,14 @@
             // 
             // grupAssetOtherTools
             // 
+            this.grupAssetOtherTools.Controls.Add(this.renderButton);
             this.grupAssetOtherTools.Controls.Add(this.buttonExtractAll);
             this.grupAssetOtherTools.Controls.Add(this.buttonExtract);
             this.grupAssetOtherTools.Controls.Add(this.buttonReplace);
             this.grupAssetOtherTools.Controls.Add(this.btnSendData);
-            this.grupAssetOtherTools.Location = new System.Drawing.Point(672, 32);
-            this.grupAssetOtherTools.Margin = new System.Windows.Forms.Padding(4);
+            this.grupAssetOtherTools.Location = new System.Drawing.Point(504, 26);
             this.grupAssetOtherTools.Name = "grupAssetOtherTools";
-            this.grupAssetOtherTools.Padding = new System.Windows.Forms.Padding(4);
-            this.grupAssetOtherTools.Size = new System.Drawing.Size(455, 233);
+            this.grupAssetOtherTools.Size = new System.Drawing.Size(341, 174);
             this.grupAssetOtherTools.TabIndex = 6;
             this.grupAssetOtherTools.TabStop = false;
             this.grupAssetOtherTools.Text = "Basic Asset Tools";
@@ -408,10 +396,9 @@
             // 
             // buttonExtractAll
             // 
-            this.buttonExtractAll.Location = new System.Drawing.Point(8, 101);
-            this.buttonExtractAll.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonExtractAll.Location = new System.Drawing.Point(6, 82);
             this.buttonExtractAll.Name = "buttonExtractAll";
-            this.buttonExtractAll.Size = new System.Drawing.Size(439, 28);
+            this.buttonExtractAll.Size = new System.Drawing.Size(329, 23);
             this.buttonExtractAll.TabIndex = 7;
             this.buttonExtractAll.Text = "Extract All Assets";
             this.buttonExtractAll.UseVisualStyleBackColor = true;
@@ -419,10 +406,9 @@
             // 
             // buttonExtract
             // 
-            this.buttonExtract.Location = new System.Drawing.Point(8, 30);
-            this.buttonExtract.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonExtract.Location = new System.Drawing.Point(6, 24);
             this.buttonExtract.Name = "buttonExtract";
-            this.buttonExtract.Size = new System.Drawing.Size(439, 28);
+            this.buttonExtract.Size = new System.Drawing.Size(329, 23);
             this.buttonExtract.TabIndex = 5;
             this.buttonExtract.Text = "Extract Selected Asset";
             this.buttonExtract.UseVisualStyleBackColor = true;
@@ -430,10 +416,9 @@
             // 
             // buttonReplace
             // 
-            this.buttonReplace.Location = new System.Drawing.Point(8, 65);
-            this.buttonReplace.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonReplace.Location = new System.Drawing.Point(6, 53);
             this.buttonReplace.Name = "buttonReplace";
-            this.buttonReplace.Size = new System.Drawing.Size(439, 28);
+            this.buttonReplace.Size = new System.Drawing.Size(329, 23);
             this.buttonReplace.TabIndex = 6;
             this.buttonReplace.Text = "Replace Selected Asset";
             this.buttonReplace.UseVisualStyleBackColor = true;
@@ -441,9 +426,10 @@
             // 
             // btnOpenByteViewer
             // 
-            this.btnOpenByteViewer.Location = new System.Drawing.Point(8, 21);
+            this.btnOpenByteViewer.Location = new System.Drawing.Point(6, 17);
+            this.btnOpenByteViewer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnOpenByteViewer.Name = "btnOpenByteViewer";
-            this.btnOpenByteViewer.Size = new System.Drawing.Size(440, 39);
+            this.btnOpenByteViewer.Size = new System.Drawing.Size(330, 32);
             this.btnOpenByteViewer.TabIndex = 38;
             this.btnOpenByteViewer.Text = "Open the Byte Viewer";
             this.btnOpenByteViewer.UseVisualStyleBackColor = true;
@@ -451,10 +437,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(7, 22);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
+            this.button1.Location = new System.Drawing.Point(5, 18);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(439, 35);
+            this.button1.Size = new System.Drawing.Size(329, 28);
             this.button1.TabIndex = 38;
             this.button1.Text = "What\'s this asset type?";
             this.button1.UseVisualStyleBackColor = true;
@@ -463,9 +448,11 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.button1);
-            this.groupBox2.Location = new System.Drawing.Point(672, 274);
+            this.groupBox2.Location = new System.Drawing.Point(504, 223);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(455, 68);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Size = new System.Drawing.Size(341, 55);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Asset Help";
@@ -473,9 +460,11 @@
             // grpByteViewerButtonContainer
             // 
             this.grpByteViewerButtonContainer.Controls.Add(this.btnOpenByteViewer);
-            this.grpByteViewerButtonContainer.Location = new System.Drawing.Point(672, 348);
+            this.grpByteViewerButtonContainer.Location = new System.Drawing.Point(504, 283);
+            this.grpByteViewerButtonContainer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.grpByteViewerButtonContainer.Name = "grpByteViewerButtonContainer";
-            this.grpByteViewerButtonContainer.Size = new System.Drawing.Size(455, 71);
+            this.grpByteViewerButtonContainer.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.grpByteViewerButtonContainer.Size = new System.Drawing.Size(341, 58);
             this.grpByteViewerButtonContainer.TabIndex = 8;
             this.grpByteViewerButtonContainer.TabStop = false;
             this.grpByteViewerButtonContainer.Text = "Byte Viewer Controls";
@@ -484,29 +473,23 @@
             // 
             this.grpTextureControls.Controls.Add(this.grpPreviewContainer);
             this.grpTextureControls.Controls.Add(this.btnOpenTextureViewer);
-            this.grpTextureControls.Location = new System.Drawing.Point(672, 425);
+            this.grpTextureControls.Location = new System.Drawing.Point(504, 345);
+            this.grpTextureControls.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.grpTextureControls.Name = "grpTextureControls";
-            this.grpTextureControls.Size = new System.Drawing.Size(455, 200);
+            this.grpTextureControls.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.grpTextureControls.Size = new System.Drawing.Size(341, 162);
             this.grpTextureControls.TabIndex = 9;
             this.grpTextureControls.TabStop = false;
             this.grpTextureControls.Text = "Texture Viewer Controls";
             // 
-            // btnOpenTextureViewer
-            // 
-            this.btnOpenTextureViewer.Location = new System.Drawing.Point(214, 155);
-            this.btnOpenTextureViewer.Name = "btnOpenTextureViewer";
-            this.btnOpenTextureViewer.Size = new System.Drawing.Size(232, 39);
-            this.btnOpenTextureViewer.TabIndex = 39;
-            this.btnOpenTextureViewer.Text = "Open Previewed Texture";
-            this.btnOpenTextureViewer.UseVisualStyleBackColor = true;
-            this.btnOpenTextureViewer.Click += new System.EventHandler(this.button2_Click_2);
-            // 
             // grpPreviewContainer
             // 
             this.grpPreviewContainer.Controls.Add(this.texturePreviewBox);
-            this.grpPreviewContainer.Location = new System.Drawing.Point(8, 21);
+            this.grpPreviewContainer.Location = new System.Drawing.Point(6, 17);
+            this.grpPreviewContainer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.grpPreviewContainer.Name = "grpPreviewContainer";
-            this.grpPreviewContainer.Size = new System.Drawing.Size(200, 173);
+            this.grpPreviewContainer.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.grpPreviewContainer.Size = new System.Drawing.Size(150, 141);
             this.grpPreviewContainer.TabIndex = 40;
             this.grpPreviewContainer.TabStop = false;
             this.grpPreviewContainer.Text = "Preview Selected Texture";
@@ -514,18 +497,40 @@
             // texturePreviewBox
             // 
             this.texturePreviewBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.texturePreviewBox.Location = new System.Drawing.Point(3, 18);
+            this.texturePreviewBox.Location = new System.Drawing.Point(2, 15);
+            this.texturePreviewBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.texturePreviewBox.Name = "texturePreviewBox";
-            this.texturePreviewBox.Size = new System.Drawing.Size(194, 152);
+            this.texturePreviewBox.Size = new System.Drawing.Size(146, 124);
             this.texturePreviewBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.texturePreviewBox.TabIndex = 0;
             this.texturePreviewBox.TabStop = false;
             // 
+            // btnOpenTextureViewer
+            // 
+            this.btnOpenTextureViewer.Location = new System.Drawing.Point(160, 126);
+            this.btnOpenTextureViewer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnOpenTextureViewer.Name = "btnOpenTextureViewer";
+            this.btnOpenTextureViewer.Size = new System.Drawing.Size(174, 32);
+            this.btnOpenTextureViewer.TabIndex = 39;
+            this.btnOpenTextureViewer.Text = "Open Previewed Texture";
+            this.btnOpenTextureViewer.UseVisualStyleBackColor = true;
+            this.btnOpenTextureViewer.Click += new System.EventHandler(this.button2_Click_2);
+            // 
+            // renderButton
+            // 
+            this.renderButton.Location = new System.Drawing.Point(6, 111);
+            this.renderButton.Name = "renderButton";
+            this.renderButton.Size = new System.Drawing.Size(329, 23);
+            this.renderButton.TabIndex = 38;
+            this.renderButton.Text = "Open Renderer";
+            this.renderButton.UseVisualStyleBackColor = true;
+            this.renderButton.Click += new System.EventHandler(this.renderButton_Click);
+            // 
             // MainWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1146, 645);
+            this.ClientSize = new System.Drawing.Size(860, 524);
             this.Controls.Add(this.grpTextureControls);
             this.Controls.Add(this.grpByteViewerButtonContainer);
             this.Controls.Add(this.groupBox2);
@@ -534,7 +539,6 @@
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainWindow";
             this.Text = "The GoodEditor 2";
             this.Load += new System.EventHandler(this.MainWindow_Load);
@@ -602,6 +606,7 @@
         private System.Windows.Forms.Button btnOpenTextureViewer;
         private System.Windows.Forms.GroupBox grpPreviewContainer;
         private System.Windows.Forms.PictureBox texturePreviewBox;
+        private System.Windows.Forms.Button renderButton;
     }
 }
 

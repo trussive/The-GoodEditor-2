@@ -1,38 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
 using System.Linq;
-using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Numerics;
 using SharpGL;
-using HiHoFile;
 
-
-namespace TheGoodEditor2 
+namespace TheGoodEditor2
 {
-    
-
-    public class Renderer 
+    public partial class RenderForm : Form
     {
+        public OpenGLControl glCont;
         OpenGL gl;
 
-        public Renderer()
+        public RenderForm()
         {
-            gl = new OpenGL();
-            Init();
-        }
-        
-        public void Init()
-        {
-            float r = 32 / 255;
-            float g = 26 / 255;
-            float b = 56 / 255;
-            gl.ClearColor(r, g, b, 0);
+            InitializeComponent();
+
+            gl = glCont.OpenGL;
+
+            gl.ClearColor(0.125f, 0.1015f, 0.218f, 0);
         }
 
-        public void Update()
+        private void InitGL(object sender, RenderEventArgs e)
         {
-
+            
         }
 
         private void DrawCube(Vector3 position)
@@ -79,15 +75,15 @@ namespace TheGoodEditor2
             gl.End();
         }
 
-        public void OpenGLDraw()
+        private void OpenGLDraw(object sender, RenderEventArgs e)
         {
             gl.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
             gl.MatrixMode(OpenGL.GL_MODELVIEW);
             gl.LoadIdentity();
 
-            foreach(var Object3D in MainWindow.objArr)
+            foreach (var Object3D in MainWindow.objArr)
             {
-                switch(Object3D.Class)
+                switch (Object3D.Class)
                 {
                     case "SimpleObject":
                         DrawCube(Object3D.Pos);
@@ -104,5 +100,18 @@ namespace TheGoodEditor2
                 }
             }
         }
+        
     }
+    public class Object
+    {
+        public Vector3 Pos;
+        public Vector3 Rot;
+        public Vector3 Scale;
+
+        public string Name; // Just in case
+        public string Class;
+
+        public bool Visible = true;
+    }
+
 }

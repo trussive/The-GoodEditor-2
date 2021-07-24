@@ -19,6 +19,7 @@ namespace TheGoodEditor2
 {
     public partial class MainWindow : Form
     {
+        static public List<Object> objArr = new List<Object>();
 
         public MainWindow()
 
@@ -64,6 +65,7 @@ namespace TheGoodEditor2
         HoFile hoFile;
         string fileName;
         byte[] editableHoFile;
+
         public void loadHoParcelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog openFile = new OpenFileDialog())
@@ -266,6 +268,16 @@ namespace TheGoodEditor2
                             string isWhatAsset = listBoxAssets.GetItemText(listBoxAssets.SelectedItem);
                             if (isWhatAsset.Contains("SimpleObject"))
                             {
+                                var obj = new Object();
+
+                                obj.Pos = new System.Numerics.Vector3(myFloat, myFloat2, myFloat3);
+                                obj.Rot = new System.Numerics.Vector3(myFloat4, myFloat5, myFloat6);
+                                obj.Scale = new System.Numerics.Vector3(myFloat7, myFloat8, myFloat9);
+
+                                obj.Class = "SimpleObject";
+
+                                objArr.Add(obj);
+
                                 SimpleObjectEditor simpEdit = new SimpleObjectEditor();
                                 simpEdit.Show();
                             }
@@ -313,6 +325,16 @@ namespace TheGoodEditor2
                                 SetValueForTextPlatformScaleY = PlatScaleY;
                                 SetValueForTextPlatformScaleZ = PlatScaleZ;
 
+                                var obj = new Object();
+
+                                obj.Pos = new System.Numerics.Vector3(myFloatPlatform, myFloat2Platform, myFloat3Platform);
+                                obj.Rot = new System.Numerics.Vector3(myFloat4Platform, myFloat5Platform, myFloat6Platform);
+                                obj.Scale = new System.Numerics.Vector3(myFloat7Platform, myFloat8Platform, myFloat9Platform);
+
+                                obj.Class = "Platform";
+
+                                objArr.Add(obj);
+
                                 PlatformEditor platEdit = new PlatformEditor();
                                 platEdit.Show();
                             }
@@ -342,6 +364,16 @@ namespace TheGoodEditor2
                                 SetValueForCollectiblePosX = CollectiblePosX;
                                 SetValueForCollectiblePosY = CollectiblePosY;
                                 SetValueForCollectiblePosZ = CollectiblePosZ;
+
+                                var obj = new Object();
+
+                                obj.Pos = new System.Numerics.Vector3(myFloatCollectible, myFloat2Collectible, myFloat3Collectible);
+                                obj.Rot = new System.Numerics.Vector3(0, 0, 0);
+                                obj.Scale = new System.Numerics.Vector3(1, 1, 1);
+
+                                obj.Class = "FloatingCollectible";
+
+                                objArr.Add(obj);
 
 
                                 FloatingCollectibleEditorWindow collEdit = new FloatingCollectibleEditorWindow();
@@ -887,6 +919,12 @@ namespace TheGoodEditor2
                                 texView.ShowDialog();
                             }
 
+        }
+
+        private void renderButton_Click(object sender, EventArgs e)
+        {
+            RenderForm rForm = new RenderForm();
+            rForm.Show();
         }
     }
 }
